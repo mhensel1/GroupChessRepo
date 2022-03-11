@@ -1,12 +1,12 @@
-package chessModel;
+package edu.ycp.cs320.chess.model;
 import java.util.ArrayList;
 
-public class chessUser {
+public class ChessUser {
 	private String user;
 	private ArrayList<String> users;
 	private double rank, userID;
 	
-	public chessUser() {
+	public ChessUser() {
 	}
 	
 	public void setUser(String username) {

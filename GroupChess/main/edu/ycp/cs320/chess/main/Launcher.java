@@ -1,4 +1,4 @@
-package main;
+package edu.ycp.cs320.chess.main;
 
 import java.lang.management.ManagementFactory;
 
