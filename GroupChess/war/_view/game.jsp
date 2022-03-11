@@ -2,7 +2,9 @@
 
 <html>
 	<head>
-		Game ${game.id}
+		<title>
+			Game ${game.id}
+		</title>
 	</head>
 	
 	<body>
