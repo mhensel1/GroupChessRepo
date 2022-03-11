@@ -26,11 +26,11 @@ public class HomepageServlet extends HttpServlet {
 		System.out.println("Homepage Servlet: doPost");
 		
 			if (req.getParameter("login") != null) {
-				req.getRequestDispatcher("/_view/Menu.jsp").forward(req, resp);
+				req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);
 			} else if (req.getParameter("guessingGame") != null) {
-				req.getRequestDispatcher("/_view/Game.jsp").forward(req, resp);		//verify if a button is pressed and call new jsp to render desired page
+				req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);		//verify if a button is pressed and call new jsp to render desired page
 			} else if (req.getParameter("createAccount") != null) {
-				req.getRequestDispatcher("/_view/Stats.jsp").forward(req, resp);
+				req.getRequestDispatcher("/_view/stats.jsp").forward(req, resp);
 			} else {
 				throw new ServletException("Unknown command");
 			}

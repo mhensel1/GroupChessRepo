@@ -19,7 +19,7 @@ public class UserStatsServlet extends HttpServlet {
 
 		System.out.println("UserStats Servlet: doGet");	
 		
-		req.getRequestDispatcher("/_view/Stats.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/stats.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -64,7 +64,7 @@ public class UserStatsServlet extends HttpServlet {
 		req.setAttribute("numbers", model);
 		
 		// Forward to view to render the result HTML document
-		req.getRequestDispatcher("/_view/Stats.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/stats.jsp").forward(req, resp);
 	}
 
 	// gets double from the request with attribute named s

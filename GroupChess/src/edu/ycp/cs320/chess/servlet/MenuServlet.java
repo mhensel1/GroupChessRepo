@@ -19,7 +19,7 @@ public class MenuServlet extends HttpServlet {
 		
 		System.out.println("MainMenu Servlet: doGet");	
 			
-		req.getRequestDispatcher("/_view/Menu.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -58,7 +58,7 @@ public class MenuServlet extends HttpServlet {
 				req.setAttribute("errorMessage", errorMessage);
 				req.setAttribute("numbers", model);
 		
-				req.getRequestDispatcher("/_view/Menu.jsp").forward(req, resp);	//Call Jsp to render new page
+				req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);	//Call Jsp to render new page
 			}
 	
 			private Double getDoubleFromParameter(String s) {
