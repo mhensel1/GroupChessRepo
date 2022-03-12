@@ -40,4 +40,13 @@ public class ChessUser {
 	public double getID() {
 		return userID;
 	}
+	
+	public void forfeit() {
+		rank -=1;
+		//game.close game
+	}
+	
+	public void login() {
+		users.add(user);
+	}
 }

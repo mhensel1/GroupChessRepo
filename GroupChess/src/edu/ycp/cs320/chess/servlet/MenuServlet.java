@@ -6,9 +6,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import edu.ycp.cs320.chess.controller.UserController;
 import edu.ycp.cs320.chess.model.ChessPiece;
+import edu.ycp.cs320.chess.model.ChessUser;
 
 public class MenuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -18,6 +20,14 @@ public class MenuServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("MainMenu Servlet: doGet");	
+		
+		
+		ChessUser userModel = new ChessUser();
+		HttpSession session = req.getSession();
+		String username = (String) session.getAttribute("user");
+		userModel.setUser(username);
+		System.out.println(username);
+		req.setAttribute("user", userModel.getUser());
 			
 		req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);
 	}
@@ -29,6 +39,8 @@ public class MenuServlet extends HttpServlet {
 		System.out.println("Menu Servlet: doPost");
 		
 		UserController controller = new UserController();
+		//ChessUser userModel = new ChessUser();
+		
 		
 		if (req.getParameter("loadGame") != null) {
 			req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);
@@ -43,6 +55,8 @@ public class MenuServlet extends HttpServlet {
 		} else {
 			throw new ServletException("Unknown command");
 		}
+		
+		
 		
 				req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);	//Call Jsp to render new page
 			}

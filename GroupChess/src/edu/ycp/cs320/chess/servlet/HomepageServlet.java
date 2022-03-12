@@ -1,5 +1,5 @@
 package edu.ycp.cs320.chess.servlet;
-
+//   localhost:8081/chess/Homepage
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -26,7 +26,7 @@ public class HomepageServlet extends HttpServlet {
 		System.out.println("Homepage Servlet: doPost");
 		
 			if (req.getParameter("login") != null) {
-				req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);
+				req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
 			} else if (req.getParameter("createAccount") != null) {
 				req.getRequestDispatcher("/_view/createAccount.jsp").forward(req, resp);		//verify if a button is pressed and call new jsp to render desired page
 			} else {

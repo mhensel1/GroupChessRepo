@@ -4,11 +4,31 @@
 
 <html>
 	<head>
-	
+		<title>Chess Stats</title>
+		<style type="text/css">
+		.error {
+			color: red;
+		}
+		
+		td.label {
+			text-align: right;
+		}
+		</style>
 	</head>
 
 	<body>
-        <form action="_view/menu.jsp">
+		<c:if test="${! empty errorMessage}">
+			<div class="error">${errorMessage}</div>
+		</c:if>
+		
+		<c:if test="${! empty result}">
+			<div class="seeRank">Rank of ${username}: ${result}</div>
+		</c:if>
+		
+		<c:if test="${empty result}">
+			<div class="seeRank">You haven't played any games yet</div>
+		</c:if>
+		<form action="_view/menu.jsp">
             <input type=submit value="Return to Menu">
         </form>
 	</body>

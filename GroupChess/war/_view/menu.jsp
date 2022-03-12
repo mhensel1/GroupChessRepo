@@ -12,7 +12,8 @@
 		<c:if test="${! empty errorMessage}">
 			<div class="error">${errorMessage}</div>
 		</c:if>
-	
+		
+		<div class="welcome">Welcome ${user}</div>
 		<form action="${pageContext.servletContext.contextPath}/Menu" method="post">
             <input name="loadGame" type="Submit" value="Load Game">
             <input name="findGame" type="Submit" value="Find Game">
