@@ -28,44 +28,22 @@ public class MenuServlet extends HttpServlet {
 		
 		System.out.println("Menu Servlet: doPost");
 		
-		ChessPiece model = new ChessPiece();
-		
 		UserController controller = new UserController();
 		
-		controller.setModel(model);
-		
-				String errorMessage = null;	//holds error
-				
-				try {
-					Double first = getDoubleFromParameter(req.getParameter("first"));
-					Double second = getDoubleFromParameter(req.getParameter("second"));	//Take three inputs and verify all three fields are filled
-					Double third = getDoubleFromParameter(req.getParameter("third"));
-					if (first == null || second == null || third == null) {
-						errorMessage = "Please specify three numbers";
-					}
-				
-					else {
-						controller.setNumbersAddition(first, second, third);	//sets the result of 3 numbers in the controller
-					}
-					
-				} catch (NumberFormatException e) {
-					errorMessage = "Invalid double";
-				}
-				
-				req.setAttribute("first", req.getParameter("first"));
-				req.setAttribute("second", req.getParameter("second"));
-				req.setAttribute("third", req.getParameter("third"));		//Add results and error message to response
-				req.setAttribute("errorMessage", errorMessage);
-				req.setAttribute("numbers", model);
+		if (req.getParameter("loadGame") != null) {
+			req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);
+		} else if (req.getParameter("findGame") != null) {
+			req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);		//verify if a button is pressed and call new jsp to render desired page
+		} else if (req.getParameter("viewStats") != null) {
+			req.getRequestDispatcher("/_view/stats.jsp").forward(req, resp);
+		} else if (req.getParameter("viewHistory") != null) {
+			req.getRequestDispatcher("/_view/history.jsp").forward(req, resp);
+		} else if (req.getParameter("logOut") != null) {
+			req.getRequestDispatcher("/_view/homepage.jsp").forward(req, resp);
+		} else {
+			throw new ServletException("Unknown command");
+		}
 		
 				req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);	//Call Jsp to render new page
 			}
-	
-			private Double getDoubleFromParameter(String s) {
-				if (s == null || s.equals("")) {
-					return null;
-				} else {
-			return Double.parseDouble(s);
-		}
-	}
 }

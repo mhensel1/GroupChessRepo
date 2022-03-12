@@ -16,7 +16,7 @@ public class HomepageServlet extends HttpServlet {
 		
 		System.out.println("Homepage Servlet: doGet");
 		
-		req.getRequestDispatcher("/_view/Homepage.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/homepage.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -27,15 +27,13 @@ public class HomepageServlet extends HttpServlet {
 		
 			if (req.getParameter("login") != null) {
 				req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);
-			} else if (req.getParameter("guessingGame") != null) {
-				req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);		//verify if a button is pressed and call new jsp to render desired page
 			} else if (req.getParameter("createAccount") != null) {
-				req.getRequestDispatcher("/_view/stats.jsp").forward(req, resp);
+				req.getRequestDispatcher("/_view/createAccount.jsp").forward(req, resp);		//verify if a button is pressed and call new jsp to render desired page
 			} else {
 				throw new ServletException("Unknown command");
 			}
 			
 		
-		req.getRequestDispatcher("/_view/Homepage.jsp").forward(req, resp);//call jsp to render updated page
+		req.getRequestDispatcher("/_view/homepage.jsp").forward(req, resp);//call jsp to render updated page
 	}
 }

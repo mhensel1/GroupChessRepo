@@ -22,6 +22,10 @@
     <servlet-name>UserStatsServlet</servlet-name>
     <servlet-class>edu.ycp.cs320.chess.servlet.UserStatsServlet</servlet-class>
   </servlet>
+   <servlet>
+    <servlet-name>GameHistoryServlet</servlet-name>
+    <servlet-class>edu.ycp.cs320.chess.servlet.GameHistoryServlet</servlet-class>
+  </servlet>
 
   <!-- Servlet mappings -->
   <servlet-mapping>
@@ -39,6 +43,10 @@
   <servlet-mapping>
     <servlet-name>GameServlet</servlet-name>
     <url-pattern>/Game</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GameHistoryServlet</servlet-name>
+    <url-pattern>/History</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>Homepage.html</welcome-file>

@@ -4,45 +4,25 @@
 
 <html>
 	<head>
-		<title>Menu</title>
-		<style type="text/css">
-		.error {
-			color: red;
-		}
 		
-		td.label {
-			text-align: right;
-		}
-		</style>
 	</head>
 
 	<body>
+        <center>
 		<c:if test="${! empty errorMessage}">
 			<div class="error">${errorMessage}</div>
 		</c:if>
 	
 		<form action="${pageContext.servletContext.contextPath}/Menu" method="post">
-			<table>
-				<tr>
-					<td class="label">First number:</td>
-					<td><input type="text" name="first" size="12" value="${first}" /></td>
-				</tr>
-				<tr>
-					<td class="label">Second number:</td>
-					<td><input type="text" name="second" size="12" value="${second}" /></td>
-				</tr>
-                <tr>
-					<td class="label">Third number:</td>
-					<td><input type="text" name="third" size="12" value="${third}" /></td>
-				</tr>
-				<tr>
-					<td class="label">Result:</td>
-					<td>${numbers.result}</td>
-				</tr>
-			</table>
-			<input type="Submit" name="submit" value="Add Numbers!">
-            
-            
+            <input name="loadGame" type="Submit" value="Load Game">
+            <input name="findGame" type="Submit" value="Find Game">
+            <input name="viewStats" type="Submit" value="View Stats">
+            <input name="viewHistory" type="Submit" value="View History">
+            <input name="logOut" type="Submit" value="Log Out">
 		</form>
+            <form action="http://www.uschess.org/index.php/Learn-About-Chess/Learn-to-Play-Chess.html">
+                <input type="submit" value="Learn to Play" />
+            </form>
+        </center>
 	</body>
 </html>

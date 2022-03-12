@@ -12,7 +12,6 @@
 			
             <input name="login" type="Submit" value="Login">
             <input name="createAccount" type="Submit" value="Create Account">
-            <input name="guessingGame" type="Submit" value="Guessing Game">
             
 		</form>
 	</body>
