@@ -80,5 +80,5 @@ public class LoginServlet extends HttpServlet {
 		// Forward to view to render the result HTML document
 		req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
 	}
-	
+
 }

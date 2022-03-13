@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import edu.ycp.cs320.chess.model.ChessGame;
 
-public class GuessingGameTest {
+public class ChessGameTest {
 	private ChessGame model;
 	
 	@Before
@@ -15,15 +15,4 @@ public class GuessingGameTest {
 		model = new ChessGame();
 	}
 	
-	@Test
-	public void testSetMin() {
-		model.setMin(1);
-		assertEquals(1, model.getMin());
-	}
-	
-	@Test
-	public void testSetMax() {
-		model.setMax(100);
-		assertEquals(100, model.getMax());
-	}
 }

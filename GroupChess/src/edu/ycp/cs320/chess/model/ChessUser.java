@@ -1,6 +1,8 @@
 package edu.ycp.cs320.chess.model;
 import java.util.ArrayList;
 
+// model class for ChessUser
+
 public class ChessUser {
 	private String user;
 	private ArrayList<String> users;

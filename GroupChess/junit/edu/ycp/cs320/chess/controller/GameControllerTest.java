@@ -8,7 +8,7 @@ import org.junit.Test;
 import edu.ycp.cs320.chess.controller.GameController;
 import edu.ycp.cs320.chess.model.ChessGame;
 
-public class GuessingGameControllerTest {
+public class GameControllerTest {
 	private ChessGame model;
 	private GameController controller;
 	
@@ -16,17 +16,7 @@ public class GuessingGameControllerTest {
 	public void setUp() {
 		model = new ChessGame();
 		controller = new GameController();
-		
-		model.setMin(1);
-		model.setMax(100);
-		
 		controller.setModel(model);
 	}
 	
-	@Test
-	public void testNumberIsGreater() {
-		int currentGuess = model.getGuess();
-		controller.setNumberIsGreaterThanGuess();
-		assertTrue(model.getGuess() > currentGuess);
-	}
 }
