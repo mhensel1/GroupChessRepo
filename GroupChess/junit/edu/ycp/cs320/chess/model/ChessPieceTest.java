@@ -14,4 +14,16 @@ public class ChessPieceTest {
 	public void setUp() {
 		model = new ChessPiece();
 	}
+	
+	@Test
+	public void testSetposX() {
+		model.setposX(0);
+		assertEquals(0, model.getposX());
+	}
+	
+	@Test
+	public void testSetposY() {
+		model.setposY(2);
+		assertEquals(2, model.getposY());
+	}
 }

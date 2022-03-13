@@ -15,4 +15,16 @@ public class ChessGameTest {
 		model = new ChessGame();
 	}
 	
+	@Test
+	public void testSetTurnCounter() {
+		model.setTurncounter(5);
+		assertEquals(5, model.getTurncounter());
+	}
+	
+	@Test
+	public void testSetLobbyCode() {
+		model.setLobbyCode("thecode");
+		assertEquals("thecode", model.getLobbyCode());
+	}
+	
 }

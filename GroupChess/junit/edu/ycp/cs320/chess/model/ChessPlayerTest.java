@@ -14,4 +14,11 @@ public class ChessPlayerTest {
 	public void setUp() {
 		model = new ChessPlayer();
 	}
+	
+	@Test
+	public void testSetPlayerColor() {
+		model.setColor(true);
+		assertEquals(true, model.getColor());
+	}
+	
 }
