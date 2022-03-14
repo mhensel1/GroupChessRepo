@@ -12,7 +12,7 @@
 			User #1 Turn
 		</div>
 		<div>
-			<img src="/Chessboard.png" alt="Chessboard">
+			<img src="_view/Chessboard.png" alt="Chessboard">
 		</div>
 		<div>
             <form action="${pageContext.servletContext.contextPath}/Game" method="post">
