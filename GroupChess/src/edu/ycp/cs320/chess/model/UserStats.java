@@ -5,6 +5,7 @@ package edu.ycp.cs320.chess.model;
 public class UserStats{
 	
 	private ChessUser model;
+	
 	public UserStats() {	
 	}
 	

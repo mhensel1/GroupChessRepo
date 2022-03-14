@@ -7,4 +7,8 @@ public class Rook{
 	public Rook() {	
 	}
 	
+	public boolean hasMoved() {
+		return false;	
+	}
+	
 }

@@ -14,4 +14,29 @@ public class ChessUserTest {
 	public void setUp() {
 		model = new ChessUser();
 	}
+	
+	@Test
+	public void testSetUser() {
+		model.setUser("username");
+		assertEquals("username", model.getUser());
+	}
+	
+	@Test
+	public void testSetRank() {
+		model.setRank(10);
+		assertEquals(10, model.getRank(), 10);
+	}
+	
+	@Test
+	public void testSetID() {
+		model.setID(10);
+		assertEquals(10, model.getID(), 10);
+	}
+	
+	@Test
+	public void testforfeit() {
+		model.setRank(10);
+		model.forfeit();
+		assertEquals(9, model.getRank(), 9);
+	}
 }

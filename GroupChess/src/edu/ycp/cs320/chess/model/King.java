@@ -7,4 +7,8 @@ public class King{
 	public King() {	
 	}
 	
+	public boolean hasMoved() {
+		return false;	
+	}
+	
 }

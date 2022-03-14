@@ -7,4 +7,8 @@ public class Queen{
 	public Queen() {	
 	}
 	
+	public boolean hasMoved() {
+		return false;	
+	}
+	
 }

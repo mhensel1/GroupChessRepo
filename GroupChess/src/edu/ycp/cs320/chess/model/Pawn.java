@@ -6,4 +6,8 @@ public class Pawn{
 	
 	public Pawn() {	
 	}
+	
+	public boolean hasMoved() {
+		return false;	
+	}
 }
