@@ -38,6 +38,18 @@ public class GameServlet extends HttpServlet {
 		
 		// assign model reference to controller so that controller can access model
 		controller.setModel(model);
+		
+		if (req.getParameter("endTurn") != null) {
+			
+		} else if (req.getParameter("saveGame") != null) {
+			
+		} else if (req.getParameter("viewHistory") != null) {
+		
+		} else if (req.getParameter("exitGame") != null) {
+			req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);
+		} else {
+			throw new ServletException("Unknown command");
+		}
 	
 		
 		// now call the JSP to render the new page
