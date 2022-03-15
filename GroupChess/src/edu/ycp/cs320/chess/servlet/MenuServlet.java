@@ -23,11 +23,15 @@ public class MenuServlet extends HttpServlet {
 		
 		
 		ChessUser userModel = new ChessUser();
+		
 		HttpSession session = req.getSession();
 		String username = (String) session.getAttribute("user");
 		userModel.setUser(username);
-		System.out.println(username);
+		
+		System.out.println("Welcome: " + userModel.getUser());
+		
 		req.setAttribute("user", userModel.getUser());
+		req.setAttribute("ChessUser", userModel);
 			
 		req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);
 	}

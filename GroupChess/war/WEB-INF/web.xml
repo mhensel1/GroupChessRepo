@@ -32,7 +32,7 @@
   </servlet>
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>edu.ycp.cs320.chess.servlet.HomepageServlet</servlet-class>
+    <servlet-class>edu.ycp.cs320.chess.servlet.LoginServlet</servlet-class>
   </servlet>
 
   <!-- Servlet mappings -->

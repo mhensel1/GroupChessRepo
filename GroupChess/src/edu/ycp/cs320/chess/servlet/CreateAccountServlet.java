@@ -41,17 +41,17 @@ public class CreateAccountServlet extends HttpServlet {
 			String pass2 = req.getParameter("pass2");
 
 			// check for errors in the form data before using is in a calculation
-			if (username == null || pass == null || pass2 == null) {
+			if (username == null || pass == null || pass2 == null || username.equals("") || pass.equals("") || pass2.equals("")) {
 				errorMessage = "Please enter username, password, and verify password";
 			}
 			
-			if (pass != pass2) {
-				errorMessage = "Passwords do not match";
+			if (pass.equals(pass2)) {
+				req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);
 			}
 		
 			else {
+				errorMessage = "Passwords do not match";
 				
-				req.getRequestDispatcher("/_view/Menu.jsp").forward(req, resp);
 			}
 		} catch (NumberFormatException e) {
 			errorMessage = "Invalid";
@@ -59,6 +59,6 @@ public class CreateAccountServlet extends HttpServlet {
 
 		req.setAttribute("errorMessage", errorMessage);
 
-		req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/createAccount.jsp").forward(req, resp);
 	}
 }

@@ -34,24 +34,33 @@ public class LoginServlet extends HttpServlet {
 		String errorMessage = null;
 		
 		ChessUser userModel = new ChessUser();
+		MenuServlet menu = new MenuServlet();
 		
 		// decode POSTed form parameters and dispatch to controller
 		try {
 			String username = req.getParameter("user");
 			String pass = req.getParameter("pass");
+			//System.out.println(username);
 
 			// check for errors in the form data before using is in a calculation
-			if (username == null || pass == null) {
+			if (username == null || pass == null || pass.equals("") || username.equals("")) {
 				errorMessage = "Please enter username or password";
+				System.out.println("Field empty");
 			}
 			// otherwise, data is good, do the calculation
 			// must create the controller each time, since it doesn't persist between POSTs
 			// the view does not alter data, only controller methods should be used for that
 			// thus, always call a controller method to operate on the data
 			else {
+				System.out.println("Username: " + username);
 				userModel.setUser(username);
-				userModel.login();
-				req.getRequestDispatcher("/_view/Menu.jsp").forward(req, resp);
+				//userModel.login();
+				req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);
+				HttpSession session = req.getSession();
+				session.setAttribute("user", userModel.getUser());
+				req.getServletContext().getRequestDispatcher("/MenuServlet");
+				menu.doGet(req, resp);
+				
 			}
 		} catch (NumberFormatException e) {
 			errorMessage = "Invalid";
@@ -64,8 +73,7 @@ public class LoginServlet extends HttpServlet {
 		// and forth, it's a good idea
 		req.setAttribute("user", userModel.getUser());
 		
-		HttpSession session = req.getSession();
-		session.setAttribute("user", userModel.getUser());
+		
 		//getServletContext().getRequestDispatcher("/MenuServlet.java").forward(req, resp);
 		//getServletContext().setAttribute("user", userModel.getUser());
 		req.setAttribute("pass", req.getParameter("pass"));

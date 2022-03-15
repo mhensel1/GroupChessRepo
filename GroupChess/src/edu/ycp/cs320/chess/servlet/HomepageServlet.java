@@ -19,8 +19,8 @@ public class HomepageServlet extends HttpServlet {
 		req.getRequestDispatcher("/_view/homepage.jsp").forward(req, resp);
 	}
 	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+	//@Override
+	/*protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
 		System.out.println("Homepage Servlet: doPost");
@@ -35,5 +35,5 @@ public class HomepageServlet extends HttpServlet {
 			
 		
 		req.getRequestDispatcher("/_view/homepage.jsp").forward(req, resp);//call jsp to render updated page
-	}
+	}*/
 }

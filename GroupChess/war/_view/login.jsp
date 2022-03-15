@@ -4,7 +4,7 @@
 
 <html>
 	<head>
-		<title>Chess Login</title>
+		<title>Login</title>
 		<style type="text/css">
 		.error {
 			color: red;
@@ -21,10 +21,10 @@
 			<div class="error">${errorMessage}</div>
 		</c:if>
 	
-		<form action="${pageContext.servletContext.contextPath}/Menu" method="get">
+		<form action="${pageContext.servletContext.contextPath}/Login" method="post">
 				<tr>
 				<td class="label">Username:</td>
-					<td><input type="text" name="username" size="12" value="${ChessUser.user}" /></td>
+					<td><input type="text" name="user" size="12" value="${user}" /></td>
 				</tr>
 				<tr>
 					<td class="label">Password:</td>
