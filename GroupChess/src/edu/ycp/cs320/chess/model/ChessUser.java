@@ -4,7 +4,7 @@ import java.util.ArrayList;
 // model class for ChessUser
 
 public class ChessUser {
-	private String user;
+	private String user, pass;
 	private ArrayList<String> users;
 	private double rank, userID;
 	
@@ -17,6 +17,14 @@ public class ChessUser {
 	
 	public String getUser() {
 		return user;
+	}
+	
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+	
+	public String getPass() {
+		return pass;
 	}
 	
 	public void setUsersList(ArrayList<String> usernames) {

@@ -36,6 +36,9 @@ public class LoginServlet extends HttpServlet {
 		ChessUser userModel = new ChessUser();
 		MenuServlet menu = new MenuServlet();
 		
+		String password = "chess";
+		userModel.setPass(password);
+		
 		// decode POSTed form parameters and dispatch to controller
 		try {
 			String username = req.getParameter("user");
@@ -46,6 +49,10 @@ public class LoginServlet extends HttpServlet {
 			if (username == null || pass == null || pass.equals("") || username.equals("")) {
 				errorMessage = "Please enter username or password";
 				System.out.println("Field empty");
+				
+			}
+			else if (pass.equals(userModel.getPass()) != true) {
+				errorMessage = "Incorrect Password";
 			}
 			// otherwise, data is good, do the calculation
 			// must create the controller each time, since it doesn't persist between POSTs
