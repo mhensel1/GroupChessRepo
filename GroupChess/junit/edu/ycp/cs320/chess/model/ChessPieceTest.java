@@ -1,5 +1,7 @@
 package edu.ycp.cs320.chess.model;
 
+//test commit
+
 import static org.junit.Assert.*;
 
 import org.junit.Before;
