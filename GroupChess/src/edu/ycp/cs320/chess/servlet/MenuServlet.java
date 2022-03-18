@@ -30,7 +30,7 @@ public class MenuServlet extends HttpServlet {
 		
 		System.out.println("Welcome: " + userModel.getUser());
 		
-		req.setAttribute("user", userModel.getUser());
+		req.setAttribute("user", userModel.getUser()); //code for displaying username in menu
 		req.setAttribute("ChessUser", userModel);
 			
 		req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);
@@ -45,12 +45,26 @@ public class MenuServlet extends HttpServlet {
 		UserController controller = new UserController();
 		//ChessUser userModel = new ChessUser();
 		
+		ChessUser userModel = new ChessUser();
+		UserStatsServlet stats = new UserStatsServlet();
+		
+		HttpSession session = req.getSession(); //code for displaying username in menu
+		String username = (String) session.getAttribute("user");
+		userModel.setUser(username);
+		
+		System.out.println("Welcome: " + userModel.getUser());
+		
+		req.setAttribute("user", userModel.getUser());
+		req.setAttribute("ChessUser", userModel);
+		
 		
 		if (req.getParameter("loadGame") != null) {
 			req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);
 		} else if (req.getParameter("findGame") != null) {
 			req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);		//verify if a button is pressed and call new jsp to render desired page
 		} else if (req.getParameter("viewStats") != null) {
+			req.getServletContext().getRequestDispatcher("/MenuServlet");
+			stats.doGet(req, resp);
 			req.getRequestDispatcher("/_view/stats.jsp").forward(req, resp);
 		} else if (req.getParameter("viewHistory") != null) {
 			req.getRequestDispatcher("/_view/history.jsp").forward(req, resp);

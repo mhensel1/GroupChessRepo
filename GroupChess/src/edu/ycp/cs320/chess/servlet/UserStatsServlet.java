@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import edu.ycp.cs320.chess.model.ChessUser;
 
@@ -17,6 +18,17 @@ public class UserStatsServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		System.out.println("Stats Servlet: doGet");	
+		
+		ChessUser userModel = new ChessUser();
+		
+		HttpSession session = req.getSession(); //code for displaying username in menu
+		String username = (String) session.getAttribute("user");
+		userModel.setUser(username);
+		
+		System.out.println("Welcome: " + userModel.getUser());
+		
+		req.setAttribute("user", userModel.getUser());
+		req.setAttribute("ChessUser", userModel);
 		
 		// call JSP to generate empty form
 		req.getRequestDispatcher("/_view/stats.jsp").forward(req, resp);

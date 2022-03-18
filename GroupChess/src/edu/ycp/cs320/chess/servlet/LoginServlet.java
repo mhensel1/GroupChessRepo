@@ -1,6 +1,7 @@
 package edu.ycp.cs320.chess.servlet;
 
 import java.io.IOException;
+//localhost:8081/chess/Homepage
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import edu.ycp.cs320.chess.model.ChessUser;
+
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -62,11 +64,11 @@ public class LoginServlet extends HttpServlet {
 				System.out.println("Username: " + username);
 				userModel.setUser(username);
 				//userModel.login();
-				req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);
 				HttpSession session = req.getSession();
 				session.setAttribute("user", userModel.getUser());
 				req.getServletContext().getRequestDispatcher("/MenuServlet");
 				menu.doGet(req, resp);
+				req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);
 				
 			}
 		} catch (NumberFormatException e) {

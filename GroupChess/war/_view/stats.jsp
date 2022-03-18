@@ -20,7 +20,7 @@
 		<c:if test="${! empty errorMessage}">
 			<div class="error">${errorMessage}</div>
 		</c:if>
-		
+		Stats for ${user}
 		<c:if test="${! empty result}">
 			<div class="seeRank">Rank of ${username}: ${result}</div>
 		</c:if>
