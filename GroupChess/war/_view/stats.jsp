@@ -13,6 +13,20 @@
 		td.label {
 			text-align: right;
 		}
+		body{
+			color: white;
+			background-image: url(https://cdn.wallpapersafari.com/44/96/cAYznI.jpg);
+			}
+		input{
+			background-color: #C90000;
+			color: white;
+			font-size: 16px;
+			padding: 1px 2px;
+			margin-top: 10px;
+		}
+		form {
+			color: white;
+		}
 		</style>
 	</head>
 

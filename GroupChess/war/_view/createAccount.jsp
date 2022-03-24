@@ -9,6 +9,21 @@
 		
 		td.label {
 			text-align: right;
+			color: white;
+		}
+		body {
+			background-image: url(https://images3.alphacoders.com/223/thumb-1920-22319.jpg);
+		}
+		input{
+				background-color: #C90000;
+				color: white;
+				font-size: 16px;
+				padding: 1px 2px;
+				margin-top: 50px;
+				margin-left: 3px;
+		}
+		form {
+			color: white;
 		}
 		</style>
 	</head>

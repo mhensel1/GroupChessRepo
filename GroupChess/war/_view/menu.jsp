@@ -5,10 +5,29 @@
 <html>
 	<head>
 		<title>Menu</title>
+		
+		<style>
+			body{
+				text-align: center;
+				background-image: url(https://images3.alphacoders.com/223/thumb-1920-22319.jpg);
+				color: white;
+				font-size: 30px;
+				font-family: Comic Sans MS;
+			}
+			input{
+				background-color: #C90000;
+				color: white;
+				font-size: 16px;
+				padding: 1px 2px;
+				margin-top: 10px;
+			}
+			form {
+				color: white;
+			}
+		</style>
 	</head>
 
 	<body>
-        <center>
 		<c:if test="${! empty errorMessage}">
 			<div class="error">${errorMessage}</div>
 		</c:if>
@@ -28,6 +47,5 @@
             <form action="http://www.uschess.org/index.php/Learn-About-Chess/Learn-to-Play-Chess.html">
                 <input type="submit" value="Learn to Play" />
             </form>
-        </center>
 	</body>
 </html>
