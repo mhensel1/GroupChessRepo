@@ -15,6 +15,8 @@
 		}
 		body{
 			color: white;
+			text-align: center;
+			font-size: 24px;
 			background-image: url(https://cdn.wallpapersafari.com/44/96/cAYznI.jpg);
 			}
 		input{
@@ -23,6 +25,9 @@
 			font-size: 16px;
 			padding: 1px 2px;
 			margin-top: 10px;
+			bottom: 8px;
+			left: 8px;
+			position: fixed;
 		}
 		form {
 			color: white;

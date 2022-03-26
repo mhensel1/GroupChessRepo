@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import edu.ycp.cs320.chess.controller.UserController;
 import edu.ycp.cs320.chess.model.ChessPiece;
 import edu.ycp.cs320.chess.model.ChessUser;
+import java.util.ArrayList;
 
 public class MenuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,6 +29,7 @@ public class MenuServlet extends HttpServlet {
 		String username = (String) session.getAttribute("user");
 		userModel.setUser(username);
 		
+		
 		System.out.println("Welcome: " + userModel.getUser());
 		
 		req.setAttribute("user", userModel.getUser()); //code for displaying username in menu
@@ -43,7 +45,6 @@ public class MenuServlet extends HttpServlet {
 		System.out.println("Menu Servlet: doPost");
 		
 		UserController controller = new UserController();
-		//ChessUser userModel = new ChessUser();
 		
 		ChessUser userModel = new ChessUser();
 		UserStatsServlet stats = new UserStatsServlet();

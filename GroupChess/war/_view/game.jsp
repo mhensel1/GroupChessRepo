@@ -7,6 +7,16 @@
 		</title>
         
         <style type="text/css">
+        	body{
+        		background-color: #800202;
+        		text-align: center;
+        		color: white;
+        		font-size: 24px;
+        	}
+        	input{
+        		background-color: #C90000;
+        		color: white;
+        	}
             .chessboard {
                 width: 480px;
                 height: 480px;

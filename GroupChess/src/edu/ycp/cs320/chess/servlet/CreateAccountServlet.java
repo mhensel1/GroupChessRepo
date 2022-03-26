@@ -1,6 +1,7 @@
 package edu.ycp.cs320.chess.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -32,33 +33,65 @@ public class CreateAccountServlet extends HttpServlet {
 
 		// holds the error message text, if there is any
 		String errorMessage = null;
-		
+		ChessUser userModel = new ChessUser();
+		MenuServlet menu = new MenuServlet();
+		ArrayList<String> usernames = userModel.getUsersList();
+		ArrayList<String> passwords = userModel.getPassList();
+		boolean inUserArr = false;
 		
 		// decode POSTed form parameters and dispatch to controller
 		try {
 			String username = req.getParameter("user");
 			String pass = req.getParameter("pass");
 			String pass2 = req.getParameter("pass2");
+			System.out.println(username + pass +pass2);
+			for (int i=0; i<usernames.size(); i++) {
+				if (usernames.get(i).equals(username)) {
+					inUserArr = true;
+				}
+			}
 
 			// check for errors in the form data before using is in a calculation
 			if (username == null || pass == null || pass2 == null || username.equals("") || pass.equals("") || pass2.equals("")) {
 				errorMessage = "Please enter username, password, and verify password";
+				System.out.println("Field empty");
 			}
 			
-			if (pass.equals(pass2)) {
-				req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);
+			else if (pass.equals(pass2) != true) {
+				errorMessage = "Passwords do not match";
+			}
+			else if (inUserArr == true) {
+				errorMessage = "Username already exists";
 			}
 		
 			else {
-				errorMessage = "Passwords do not match";
-				
+				System.out.println("Username: " + username);
+				userModel.setUser(username);
+				userModel.setPass(pass);
+				usernames.add(userModel.getUser());
+				passwords.add(userModel.getPass());
+				//userModel.login();
+				HttpSession session = req.getSession();
+				session.setAttribute("user", userModel.getUser());
+				//session.setAttribute("userArr", usernames);
+				//session.setAttribute("passArr", passwords);
+				req.getServletContext().getRequestDispatcher("/MenuServlet");
+				menu.doGet(req, resp);
+				req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);
 			}
 		} catch (NumberFormatException e) {
 			errorMessage = "Invalid";
 		}
-
+		
+		req.setAttribute("user", userModel.getUser());
+		//getServletContext().getRequestDispatcher("/MenuServlet.java").forward(req, resp);
+		//getServletContext().setAttribute("user", userModel.getUser());
+		req.setAttribute("pass", req.getParameter("pass"));
+		
 		req.setAttribute("errorMessage", errorMessage);
-
+		
+		req.setAttribute("ChessUser", userModel);
+		
 		req.getRequestDispatcher("/_view/createAccount.jsp").forward(req, resp);
 	}
 }

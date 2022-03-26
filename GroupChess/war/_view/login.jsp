@@ -47,6 +47,11 @@
 				</tr>
 			<input type="Submit" name="submit" value="Login">
 		</form>
+		<form action="${pageContext.servletContext.contextPath}/CreateAccount" method="get">
+			<tr>
+				<td><input type="Submit" value="Create Account"/></td>
+			</tr>
+		</form>
 		
 	</body>
 </html>

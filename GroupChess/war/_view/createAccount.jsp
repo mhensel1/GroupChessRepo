@@ -36,7 +36,7 @@
 		<form action="${pageContext.servletContext.contextPath}/CreateAccount" method="post">
 				<tr>
 				<td class="label">Username:</td>
-					<td><input type="text" name="username" size="12" value="${ChessUser.user}" /></td>
+					<td><input type="text" name="user" size="12" value="${user}" /></td>
 				</tr>
 				<tr>
 					<td class="label">Password:</td>

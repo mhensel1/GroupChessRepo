@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import edu.ycp.cs320.chess.model.ChessUser;
+import java.util.ArrayList;
 
 
 public class LoginServlet extends HttpServlet {
@@ -37,15 +38,25 @@ public class LoginServlet extends HttpServlet {
 		
 		ChessUser userModel = new ChessUser();
 		MenuServlet menu = new MenuServlet();
+		ArrayList<String> usernames = userModel.getUsersList();
+		ArrayList<String> passwords = userModel.getPassList();
+		boolean inUserArr = false;
+		int passIndex = -1;
 		
-		String password = "chess";
-		userModel.setPass(password);
+		//String password = "chess";
+		//userModel.setPass(password);
 		
 		// decode POSTed form parameters and dispatch to controller
 		try {
 			String username = req.getParameter("user");
 			String pass = req.getParameter("pass");
 			//System.out.println(username);
+			for (int i=0; i<usernames.size(); i++) {
+				if (usernames.get(i).equals(username)) {
+					inUserArr = true;
+					passIndex = i;
+				}
+			}
 
 			// check for errors in the form data before using is in a calculation
 			if (username == null || pass == null || pass.equals("") || username.equals("")) {
@@ -53,7 +64,10 @@ public class LoginServlet extends HttpServlet {
 				System.out.println("Field empty");
 				
 			}
-			else if (pass.equals(userModel.getPass()) != true) {
+			else if (inUserArr == false) {
+				errorMessage = "Account Not Recognized, Please Create an Account";
+			}
+			else if (pass.equals(passwords.get(passIndex)) != true) {
 				errorMessage = "Incorrect Password";
 			}
 			// otherwise, data is good, do the calculation

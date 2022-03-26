@@ -5,10 +5,16 @@ import java.util.ArrayList;
 
 public class ChessUser {
 	private String user, pass;
-	private ArrayList<String> users;
+	private ArrayList<String> users, passwords;
 	private double rank, userID;
 	
 	public ChessUser() {
+		users = new ArrayList<String>();
+		users.add("admin");
+		users.add("mhensel");
+		passwords = new ArrayList<String>();
+		passwords.add("chess");
+		passwords.add("pass");
 	}
 	
 	public void setUser(String username) {
@@ -35,6 +41,10 @@ public class ChessUser {
 		return users;
 	}
 	
+	public ArrayList<String> getPassList(){
+		return passwords;
+	}
+	
 	public void setRank(double userRank) {
 		this.rank = userRank;
 	}
@@ -58,5 +68,6 @@ public class ChessUser {
 	
 	public void login() {
 		users.add(user);
+		passwords.add(pass);
 	}
 }
