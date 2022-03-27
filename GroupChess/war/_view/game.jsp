@@ -23,7 +23,6 @@
 				font-size: 32px;
 				padding: 10px 20px;
 				margin-top: 10px;
-				margin-left: 15px;
 		}
         .player {
 				background-color: #C90000;
@@ -83,9 +82,9 @@
         }
         .input{
 				color: white;
-                width: 260px;
-                height: 400px;
-                position:absolute;
+                width: 250px;
+                height: 360px;
+                position: absolute;
                 margin-right: 25px;
                 top:10px;
                 right: 10px;
