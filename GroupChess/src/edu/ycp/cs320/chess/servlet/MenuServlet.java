@@ -38,6 +38,7 @@ public class MenuServlet extends HttpServlet {
 		req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);
 	}
 	
+	/*
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -57,6 +58,7 @@ public class MenuServlet extends HttpServlet {
 		
 		req.setAttribute("user", userModel.getUser());
 		req.setAttribute("ChessUser", userModel);
+		
 		
 		
 		if (req.getParameter("loadGame") != null) {
@@ -79,4 +81,5 @@ public class MenuServlet extends HttpServlet {
 		
 				req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);	//Call Jsp to render new page
 			}
+			*/
 }

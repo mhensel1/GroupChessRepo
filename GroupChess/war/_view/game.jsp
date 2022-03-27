@@ -2,9 +2,12 @@
 
 <html>
 	<head>
+        
 		<title>
 			Game ${game.id}
 		</title>
+        
+        
         
         <style type="text/css">
         	body{
@@ -12,28 +15,63 @@
         		text-align: center;
         		color: white;
         		font-size: 24px;
+                background-image: url(https://images3.alphacoders.com/223/thumb-1920-22319.jpg);
         	}
-        	input{
-        		background-color: #C90000;
-        		color: white;
-        	}
-            .chessboard {
+        input {
+				background-color: #C90000;
+				color: white;
+				font-size: 32px;
+				padding: 10px 20px;
+				margin-top: 10px;
+				margin-left: 15px;
+		}
+        .player {
+				background-color: #C90000;
+				color: white;
+				font-size: 32px;
+				padding: 3px 5px;
+				margin: auto;
+                width: 510px;
+                text-align: center;
+		}
+        .pieces {
+				background-color: #C90000;
+				 width: 260px;
+                height: 300px;
+                position:absolute;
+                margin-left: 25px;
+                top:10px;
+                left: 10px;
+                background-color: whitesmoke;
+				border: 5px solid #111;
+		}
+        .text{
+				width: 260px;
+                height: 200px;
+                position:absolute;
+                margin-left: 25px;
+                top:320px;
+                left: 10px;
+                background-color: whitesmoke;
+				border: 5px solid #111;
+        }
+        .chessboard {
                 width: 480px;
                 height: 480px;
-                margin: 20px;
+                margin: auto;
                 border: 5px solid #111;
-            }
-            .black {
+        }
+        .black {
                 float: left;
                 width: 60px;
                 height: 60px;
-                background-color: #604020;
+                background-color: darkred;
                 font-size:60px;
                 text-align:center;
                 display: table-cell;
                 vertical-align:middle;
-            }
-            .white {
+        }
+        .white {
                 float: left;
                 width: 60px;
                 height: 60px;
@@ -42,196 +80,223 @@
                 text-align:center;
                 display: table-cell;
                 vertical-align:middle;
-            }
+        }
+        .input{
+				color: white;
+                width: 260px;
+                height: 400px;
+                position:absolute;
+                margin-right: 25px;
+                top:10px;
+                right: 10px;
+                background-color: whitesmoke;
+				border: 5px solid #111;
+		}
 
-            #blackQueen {
+        #blackQueen {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) 0 0;
-            }
-            #blackKing {
+        }
+        #blackKing {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -60px 0;
-            }
-            #blackRook1 {
+        }
+        #blackRook1 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -120px 0;
-            }
-            #blackRook2 {
+        }
+        #blackRook2 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -120px 0;
-            }
-            #blackKnight1 {
+        }
+        #blackKnight1 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -180px 0;
-            }
-            #blackKnight2 {
+        }
+        #blackKnight2 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -180px 0;
-            }
-            #blackBishop1 {
+        }
+        #blackBishop1 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -240px 0;
-            }
-            #blackBishop2 {
+        }
+        #blackBishop2 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -240px 0;
-            }
-            #blackPawn1 {
+        }
+        #blackPawn1 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -300px 0;
-            }
-             #blackPawn2 {
+        }
+        #blackPawn2 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -300px 0;
-            }
-             #blackPawn3 {
+        }
+        #blackPawn3 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -300px 0;
-            }
-             #blackPawn4 {
+        }
+        #blackPawn4 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -300px 0;
-            }
-             #blackPawn5 {
+        }
+        #blackPawn5 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -300px 0;
-            }
-             #blackPawn6 {
+        }
+        #blackPawn6 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -300px 0;
-            }
-             #blackPawn7 {
+        }
+        #blackPawn7 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -300px 0;
-            }
-             #blackPawn8 {
+        }
+        #blackPawn8 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -300px 0;
-            }
-            #whiteQueen {
+        }
+        #whiteQueen {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) 0 -60px;
-            }
-            #whiteKing {
+        }
+        #whiteKing {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -60px -60px;
-            }
-            #whiteRook1 {
+        }
+        #whiteRook1 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -120px -60px;
-            }
-            #whiteRook2 {
+        }
+        #whiteRook2 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -120px -60px;
-            }
-            #whiteKnight1 {
+        }
+        #whiteKnight1 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -180px -60px;
-            }
-             #whiteKnight2 {
+        }
+        #whiteKnight2 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -180px -60px;
-            }
-            #whiteBishop1 {
+        }
+        #whiteBishop1 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -240px -60px;
-            }
-            #whiteBishop2 {
+        }
+        #whiteBishop2 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -240px -60px;
-            }
-            #whitePawn {
+        }
+        #whitePawn {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -300px -60px;
-            }
-            #whitePawn1 {
+        }
+        #whitePawn1 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -300px -60px;
-            }
-            #whitePawn2 {
+        }
+        #whitePawn2 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -300px -60px;
-            }
-            #whitePawn3 {
+        }
+        #whitePawn3 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -300px -60px;
-            }
-            #whitePawn4 {
+        }
+        #whitePawn4 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -300px -60px;
-            }
-            #whitePawn5 {
+        }
+        #whitePawn5 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -300px -60px;
-            }
-            #whitePawn6 {
+        }
+        #whitePawn6 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -300px -60px;
-            }
-            #whitePawn7 {
+        }
+        #whitePawn7 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -300px -60px;
-            }
-            #whitePawn8 {
+        }
+        #whitePawn8 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -300px -60px;
-            }
+        }
         </style>
         <script>
-           function allowDrop(ev) {
-                ev.preventDefault();
+           function allowDrop(event) {
+                event.preventDefault();
             }
 
-            function dragStart(ev) {
-                ev.dataTransfer.setData("text", ev.target.id);
+            function dragStart(event) {
+                event.dataTransfer.setData("sprite", event.target.id);
             }
 
-            function dragDrop(ev) {
-                ev.preventDefault();
-                var data = ev.dataTransfer.getData("text");
-                ev.target.appendChild(document.getElementById(data));
+            function dragDrop(event) {
+                event.preventDefault();
+                var data = event.dataTransfer.getData("sprite");
+                event.target.appendChild(document.getElementById(data));
             }
         </script>
    
 	</head>
     
     <body>
-        <div>
+      
+        <div class ="player">
 			White Players Turn
 		</div>
+        
+        <div class="pieces" >
+            <div style="height: 32px; background-color: #C90000;border: 3px solid #111;  color: black;
+				font-size: 28px;">
+                Captured Pieces
+            </div>
+           
+        </div>
+        
+        <div class="text">
+         <div style="height: 32px; background-color: #C90000;border: 3px solid #111;  color: black;
+				font-size: 28px;">
+                Player Chat
+            </div>
+        </div>
         
         <div class="chessboard">
             <!-- Row 1 (a8 b8 c8 d8 e8 f8 g8 h8) -->
@@ -315,13 +380,28 @@
             <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="whiteRook2" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
         </div>
         
-		<div>
-            <form action="${pageContext.servletContext.contextPath}/Game" method="post">
+		<div class = "input">
+            
+        <form action="${pageContext.servletContext.contextPath}/Game" method="get">
             <input name="endTurn" type="Submit" value="End Turn">
+        </form>
+            
+        <form action="${pageContext.servletContext.contextPath}/Game" method="get">
             <input name="saveGame" type="Submit" value="Save Game">
+        </form>
+        
+        <form action="${pageContext.servletContext.contextPath}/History" method="get">
             <input name="viewHistory" type="Submit" value="View History">
+		</form>
+            
+        <form action="${pageContext.servletContext.contextPath}/Menu" method="get">
             <input name="exitGame" type="Submit" value="Exit Game">
-            </form>  
+        </form>  
+            
+        <form action="http://www.uschess.org/index.php/Learn-About-Chess/Learn-to-Play-Chess.html">
+            <input type="submit" value="Learn to Play" />
+        </form>
+            
         </div>
 	</body>
 </html>

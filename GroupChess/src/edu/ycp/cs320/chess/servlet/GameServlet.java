@@ -46,7 +46,7 @@ public class GameServlet extends HttpServlet {
 		} else if (req.getParameter("viewHistory") != null) {
 		
 		} else if (req.getParameter("exitGame") != null) {
-			req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);
+			
 		} else {
 			throw new ServletException("Unknown command");
 		}

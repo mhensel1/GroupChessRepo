@@ -33,10 +33,19 @@
 		</c:if>
 		
 		<div class="welcome">Welcome ${user}</div>
-		<form action="${pageContext.servletContext.contextPath}/Menu" method="post">
+		<form action="${pageContext.servletContext.contextPath}/Game" method="get">
             <input name="loadGame" type="Submit" value="Load Game">
+            	</form>
+        
+        <form action="${pageContext.servletContext.contextPath}/Game" method="get">
             <input name="findGame" type="Submit" value="Find Game">
+            </form>
+        
+            <form action="${pageContext.servletContext.contextPath}/History" method="get">
             <input name="viewHistory" type="Submit" value="View History">
+            </form>    
+                
+            <form action="${pageContext.servletContext.contextPath}/Login" method="get">
             <input name="logOut" type="Submit" value="Log Out">
 		</form>
 		
