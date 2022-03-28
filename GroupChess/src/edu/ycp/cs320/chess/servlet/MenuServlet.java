@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import edu.ycp.cs320.chess.controller.UserController;
-import edu.ycp.cs320.chess.model.ChessPiece;
 import edu.ycp.cs320.chess.model.ChessUser;
 import java.util.ArrayList;
 

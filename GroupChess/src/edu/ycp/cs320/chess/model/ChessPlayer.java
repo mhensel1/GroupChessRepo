@@ -4,6 +4,7 @@ package edu.ycp.cs320.chess.model;
 
 public class ChessPlayer {
 	private boolean color;
+	private ChessPiece[] pieces;
 	//T = black
 	//F = white
 	
