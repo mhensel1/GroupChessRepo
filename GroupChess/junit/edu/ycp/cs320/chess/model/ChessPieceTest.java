@@ -49,13 +49,13 @@ public class ChessPieceTest {
 	
 	@Test
 	public void bishopTestSetposX() {
-		pawn.setposX(0);
+		bishop.setposX(0);
 		assertEquals(0, bishop.getposX());
 	}
 	
 	@Test
 	public void bishopTestSetposY() {
-		pawn.setposY(2);
+		bishop.setposY(2);
 		assertEquals(2, bishop.getposY());
 	}
 	
@@ -66,13 +66,13 @@ public class ChessPieceTest {
 	
 	@Test
 	public void kingTestSetposX() {
-		pawn.setposX(0);
+		king.setposX(0);
 		assertEquals(0, king.getposX());
 	}
 	
 	@Test
 	public void kingTestSetposY() {
-		pawn.setposY(2);
+		king.setposY(2);
 		assertEquals(2, king.getposY());
 	}
 	
@@ -83,13 +83,13 @@ public class ChessPieceTest {
 	
 	@Test
 	public void rookTestSetposX() {
-		pawn.setposX(0);
+		rook.setposX(0);
 		assertEquals(0, rook.getposX());
 	}
 	
 	@Test
 	public void rookTestSetposY() {
-		pawn.setposY(2);
+		rook.setposY(2);
 		assertEquals(2, rook.getposY());
 	}
 	
@@ -100,13 +100,13 @@ public class ChessPieceTest {
 	
 	@Test
 	public void queenTestSetposX() {
-		pawn.setposX(0);
+		queen.setposX(0);
 		assertEquals(0, queen.getposX());
 	}
 	
 	@Test
 	public void queenTestSetposY() {
-		pawn.setposY(2);
+		queen.setposY(2);
 		assertEquals(2, queen.getposY());
 	}
 	
@@ -117,13 +117,13 @@ public class ChessPieceTest {
 	
 	@Test
 	public void knightTestSetposX() {
-		pawn.setposX(0);
+		knight.setposX(0);
 		assertEquals(0, knight.getposX());
 	}
 	
 	@Test
 	public void knightTestSetposY() {
-		pawn.setposY(2);
+		knight.setposY(2);
 		assertEquals(2, knight.getposY());
 	}
 	
