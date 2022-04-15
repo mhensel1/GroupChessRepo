@@ -9,11 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import edu.ycp.cs320.chess.controller.CreateAccountController;
 import edu.ycp.cs320.chess.model.ChessUser;
 
 public class CreateAccountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private CreateAccountController controller = null;
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -33,6 +36,7 @@ public class CreateAccountServlet extends HttpServlet {
 
 		// holds the error message text, if there is any
 		String errorMessage = null;
+		String successMessage = null;
 		ChessUser userModel = new ChessUser();
 		MenuServlet menu = new MenuServlet();
 		ArrayList<String> usernames = userModel.getUsersList();
@@ -65,6 +69,15 @@ public class CreateAccountServlet extends HttpServlet {
 			}
 		
 			else {
+				controller = new CreateAccountController();
+				
+				// get list of books returned from query			
+				if (controller.insertUserIntoTable(username, pass)) {
+					successMessage = username;
+				}
+				else {
+					errorMessage = "Failed to insert User: " + username;					
+				}
 				System.out.println("Username: " + username);
 				userModel.setUser(username);
 				userModel.setPass(pass);

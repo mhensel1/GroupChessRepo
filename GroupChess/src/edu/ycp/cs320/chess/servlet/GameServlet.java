@@ -19,6 +19,10 @@ public class GameServlet extends HttpServlet {
 		
 		System.out.println("ChessGame Servlet: doGet");	
 		// call JSP to generate empty form
+		if (req.getParameter("selectPiece") != null) {
+			System.out.println("selectPiece");
+		}
+		
 		req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);
 	}
 	
@@ -39,6 +43,10 @@ public class GameServlet extends HttpServlet {
 		// assign model reference to controller so that controller can access model
 		controller.setModel(model);
 		
+		if (req.getParameter("selectPiece") != null) {
+			System.out.println("selectPiece");
+		}
+		
 		if (req.getParameter("endTurn") != null) {
 			
 		} else if (req.getParameter("saveGame") != null) {
@@ -50,7 +58,8 @@ public class GameServlet extends HttpServlet {
 		} else {
 			throw new ServletException("Unknown command");
 		}
-	
+		
+		req.setAttribute("ChessGame", model);
 		
 		// now call the JSP to render the new page
 		req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);

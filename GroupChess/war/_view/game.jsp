@@ -97,16 +97,19 @@
               height: 60px;
               background: url(_view/chessPieces.png) 0 0;
         }
+            
         #blackKing {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -60px 0;
         }
+            
         #blackRook1 {
               width: 60px;
               height: 60px;
               background: url(_view/chessPieces.png) -120px 0;
         }
+            
         #blackRook2 {
               width: 60px;
               height: 60px;
@@ -258,12 +261,15 @@
               background: url(_view/chessPieces.png) -300px -60px;
         }
         </style>
+        
         <script>
+            
            function allowDrop(event) {
                 event.preventDefault();
             }
 
             function dragStart(event) {
+                document.getElementById("form_id").submit();// Form submission
                 event.dataTransfer.setData("sprite", event.target.id);
             }
 
@@ -272,6 +278,7 @@
                 var data = event.dataTransfer.getData("sprite");
                 event.target.appendChild(document.getElementById(data));
             }
+                        
         </script>
    
 	</head>
@@ -299,7 +306,16 @@
         
         <div class="chessboard">
             <!-- Row 1 (a8 b8 c8 d8 e8 f8 g8 h8) -->
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackRook1" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"> </div>
+            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackRook1" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"> 
+                
+            <form action="${pageContext.servletContext.contextPath}/Game" method="get" id="form_id" class="form_class">
+            <input name="selectPiece" type="hidden" value="select Piece">
+            </form>
+                
+    
+                
+            </div>
+            
             <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackKnight1" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
             <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackBishop1" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
             <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackKing" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
@@ -310,12 +326,19 @@
 
             <!-- Row 2 a7 b7 c7 d7 e7 f7 g7 h7 -->
             <div class="black" ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackPawn1" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
+            
             <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackPawn2" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
+            
             <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackPawn3" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
+            
             <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackPawn4" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
+            
             <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackPawn5" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
+            
             <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackPawn6" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
+            
             <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackPawn7" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
+            
             <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackPawn8" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
 
             <!-- Row 3 a6 b6 c6 d6 e6 f6 g6 h6 -->

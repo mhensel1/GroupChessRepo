@@ -4,7 +4,8 @@ package edu.ycp.cs320.chess.model;
 
 public class Rook{
 	
-	public Rook() {	
+	public Rook() {
+		
 	}
 	
 	public boolean hasMoved() {

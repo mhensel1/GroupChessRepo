@@ -9,10 +9,7 @@ public class GameController {
 		this.model = model;
 	}
 
-
 	public void startGame() {
 		
 	}
-
-
 }
