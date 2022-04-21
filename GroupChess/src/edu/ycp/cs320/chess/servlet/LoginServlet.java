@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import edu.ycp.cs320.booksdb.model.User;
+import edu.ycp.cs320.chess.controller.AccountLoginController;
 import edu.ycp.cs320.chess.model.ChessUser;
 import java.util.ArrayList;
 
@@ -36,6 +38,7 @@ public class LoginServlet extends HttpServlet {
 		// holds the error message text, if there is any
 		String errorMessage = null;
 		
+		AccountLoginController controller = new AccountLoginController();
 		ChessUser userModel = new ChessUser();
 		MenuServlet menu = new MenuServlet();
 		ArrayList<String> usernames = userModel.getUsersList();
@@ -51,7 +54,13 @@ public class LoginServlet extends HttpServlet {
 			String username = req.getParameter("user");
 			String pass = req.getParameter("pass");
 			//System.out.println(username);
-			for (int i=0; i<usernames.size(); i++) {
+			
+			User checkUser = controller.findUserByUserByNameAndPass(username, pass);
+			if (checkUser == null) {
+				System.out.println("Username or password incorrect");
+				errorMessage = "Username or Password is Incorrect";
+			}
+			/*for (int i=0; i<usernames.size(); i++) {
 				if (usernames.get(i).equals(username)) {
 					inUserArr = true;
 					passIndex = i;
@@ -69,7 +78,7 @@ public class LoginServlet extends HttpServlet {
 			}
 			else if (pass.equals(passwords.get(passIndex)) != true) {
 				errorMessage = "Incorrect Password";
-			}
+			}*/
 			// otherwise, data is good, do the calculation
 			// must create the controller each time, since it doesn't persist between POSTs
 			// the view does not alter data, only controller methods should be used for that

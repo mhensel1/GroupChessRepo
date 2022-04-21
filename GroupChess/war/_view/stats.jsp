@@ -40,11 +40,15 @@
 			<div class="error">${errorMessage}</div>
 		</c:if>
 		Stats for ${user}
-		<c:if test="${! empty result}">
-			<div class="seeRank">Rank of ${username}: ${result}</div>
+		<c:if test="${! empty rank}">
+			<div class="seeRank">
+			Rank of ${username}: ${rank} 
+			Games Won: ${wins}
+			Games Lost: ${losses}
+			</div>
 		</c:if>
 		
-		<c:if test="${empty result}">
+		<c:if test="${empty rank}">
 			<div class="seeRank">You haven't played any games yet</div>
 		</c:if>
 		<form action="_view/menu.jsp">
