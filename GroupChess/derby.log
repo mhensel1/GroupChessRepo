@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Sat Apr 23 10:48:03 EDT 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0180-56e4-e68e-000007b8ff08 
+on database directory C:\Group-Project-DB\Chess.db with class loader sun.misc.Launcher$AppClassLoader@73d16e93 
+Loaded from file:/C:/cs320-spring2022/CS320_Derby/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_301-b09
+user.dir=C:\Users\Ethan\Documents\GitHub\GroupChessRepo\GroupChess
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
