@@ -7,6 +7,7 @@ public class ChessUser {
 	private String user, pass;
 	private ArrayList<String> users, passwords;
 	private double rank, userID;
+	private ChessGame game1;
 	
 	public ChessUser() {
 		users = new ArrayList<String>();
@@ -15,6 +16,14 @@ public class ChessUser {
 		passwords = new ArrayList<String>();
 		passwords.add("chess");
 		passwords.add("pass");
+	}
+	
+	public void setGame1(ChessGame game1) {
+		this.game1 = game1;
+	}
+	
+	public ChessGame getGame1() {
+		return game1;
 	}
 	
 	public void setUser(String username) {

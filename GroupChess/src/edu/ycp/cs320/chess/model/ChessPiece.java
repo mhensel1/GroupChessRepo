@@ -1,27 +1,39 @@
 package edu.ycp.cs320.chess.model;
 
-// model class for ChessPiece
-
-public class ChessPiece {
-	private int posX;
-	private int posY;
-	
-	public ChessPiece() {
+public abstract class ChessPiece {
+	  
+    private boolean captured = false;
+    private boolean hasMoved = false;
+    private boolean color = false;
+  
+    public ChessPiece(boolean color) {
+        this.setColor(color);
+    }
+  
+    public boolean getColor() {
+        return color;
+    }
+  
+    public void setColor(boolean color) {
+        this.color = color;
+    }
+  
+    public boolean captured() {
+        return this.captured;
+    }
+  
+    public void setCaptured(boolean captured) {
+        this.captured = captured;
+    }
+    
+    public void setHasMoved(boolean moved) {
+        this.hasMoved = moved;
+    }
+    
+	public boolean hasMoved() {
+		return hasMoved;
 	}
 	
-	public void setposX(int X) {
-		this.posX = X;
-	}
-	
-	public void setposY(int Y) {
-		this.posY = Y;
-	}
-	
-	public int getposX() {
-		return posX;
-	}
-	
-	public int getposY() {
-		return posY;
-	}
+  
+    public abstract boolean canMove(ChessBoard board, BoardSpace start, BoardSpace end);
 }

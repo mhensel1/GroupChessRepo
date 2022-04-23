@@ -10,6 +10,7 @@ import edu.ycp.cs320.chess.model.ChessGame;
 public class ChessGameTest {
 	private ChessGame model;
 	
+	/*
 	@Before
 	public void setUp() {
 		model = new ChessGame();
@@ -17,7 +18,7 @@ public class ChessGameTest {
 	
 	@Test
 	public void testSetTurnCounter() {
-		model.setTurncounter(5);
+		model.(5);
 		assertEquals(5, model.getTurncounter());
 	}
 	
@@ -26,5 +27,6 @@ public class ChessGameTest {
 		model.setLobbyCode("thecode");
 		assertEquals("thecode", model.getLobbyCode());
 	}
+	*/
 	
 }

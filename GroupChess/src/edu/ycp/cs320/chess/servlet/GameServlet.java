@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.ycp.cs320.chess.controller.GameController;
 import edu.ycp.cs320.chess.model.ChessGame;
+import edu.ycp.cs320.chess.model.ChessPlayer;
 
 public class GameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,17 +32,18 @@ public class GameServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("ChessGame Servlet: doPost");
-		
+		ChessPlayer white = new ChessPlayer();
+		ChessPlayer black = new ChessPlayer();
 		// create ChessGameTest model - model does not persist between requests
 		// must recreate it each time a Post comes in 
-		ChessGame model = new ChessGame();
+		ChessGame gamemodel = new ChessGame(white,black);
 
 		// create ChessGameTest controller - controller does not persist between requests
 		// must recreate it each time a Post comes in
 		GameController controller = new GameController();
 		
 		// assign model reference to controller so that controller can access model
-		controller.setModel(model);
+		controller.setGameModel(gamemodel);
 		
 		if (req.getParameter("selectPiece") != null) {
 			System.out.println("selectPiece");
@@ -59,7 +61,7 @@ public class GameServlet extends HttpServlet {
 			throw new ServletException("Unknown command");
 		}
 		
-		req.setAttribute("ChessGame", model);
+		req.setAttribute("ChessGame", gamemodel);
 		
 		// now call the JSP to render the new page
 		req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);

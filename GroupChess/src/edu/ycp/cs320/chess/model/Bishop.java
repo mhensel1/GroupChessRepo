@@ -1,10 +1,15 @@
 package edu.ycp.cs320.chess.model;
 
-// model class for bishop
-
-public class Bishop{
-	
-	public Bishop() {	
-	}
-	
+public class Bishop extends ChessPiece {
+    
+	public Bishop(boolean color){
+		
+        super(color);
+    }
+  
+    @Override
+    public boolean canMove(ChessBoard board, BoardSpace start, BoardSpace end){
+    	return false;
+    }
+    
 }

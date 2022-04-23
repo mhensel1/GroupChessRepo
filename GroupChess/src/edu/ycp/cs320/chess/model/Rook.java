@@ -1,15 +1,20 @@
 package edu.ycp.cs320.chess.model;
 
-// model class for rook
+public class Rook extends ChessPiece {
+	
+    public Rook(boolean white)
+    {
+    	
+        super(white);
+    }
+  
+    @Override
+    public boolean canMove(ChessBoard board, BoardSpace start, BoardSpace end) {
+ 
+        if (end.getPiece().getColor()== this.getColor()) {
+            return false;
+        }
 
-public class Rook{
-	
-	public Rook() {
-		
-	}
-	
-	public boolean hasMoved() {
-		return false;	
-	}
-	
+            return true;
+    }
 }

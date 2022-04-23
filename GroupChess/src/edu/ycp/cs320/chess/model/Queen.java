@@ -1,14 +1,13 @@
 package edu.ycp.cs320.chess.model;
 
-// model class for queen
-
-public class Queen{
+public class Queen extends ChessPiece {
 	
-	public Queen() {	
-	}
-	
-	public boolean hasMoved() {
-		return false;	
-	}
-	
+    public Queen(boolean white) {
+        super(white);
+    }
+  
+    @Override
+    public boolean canMove(ChessBoard board, BoardSpace start, BoardSpace end) {
+            return true;
+     }
 }

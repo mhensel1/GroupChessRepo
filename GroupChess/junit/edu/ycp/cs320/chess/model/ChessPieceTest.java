@@ -22,28 +22,15 @@ public class ChessPieceTest {
 	
 	@Before
 	public void setUp() {
-		model = new ChessPiece();
-		pawn = new Pawn();
-		rook = new Rook();
-		knight = new Knight();
-		bishop = new Bishop();
-		king = new King();
-		queen = new Queen();
+		pawn = new Pawn(true);
+		rook = new Rook(true);
+		knight = new Knight(true);
+		bishop = new Bishop(true);
+		king = new King(true);
+		queen = new Queen(true);
 		
 	}
-	
-	@Test
-	public void testSetposX() {
-		model.setposX(0);
-		assertEquals(0, model.getposX());
-	}
-	
-	@Test
-	public void testSetposY() {
-		model.setposY(2);
-		assertEquals(2, model.getposY());
-	}
-	
+
 	@Test
 	public void testPawnHasMoved() {
 		assertEquals(false, pawn.hasMoved());

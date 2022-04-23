@@ -22,6 +22,7 @@ public class ChessBoardTest {
 		assertTrue(model.getSpace(7, 7));
 		assertTrue(model.getSpace(3, 3));*/
 		
+		/*
 		assertEquals(true, model.getSpace(0, 0));
 		assertEquals(true, model.getSpace(7, 7));
 		assertEquals(true, model.getSpace(3, 1));
@@ -29,6 +30,7 @@ public class ChessBoardTest {
 		assertEquals(false, model.getSpace(0, 7));
 		assertEquals(false, model.getSpace(7, 0));
 		assertEquals(false, model.getSpace(5, 2));
+		*/
 	}
 	
 	@Test
@@ -36,15 +38,16 @@ public class ChessBoardTest {
 		model.createBoard();
 		int x = 2;
 		int y = 3;
-		assertFalse(model.getSpace(x, y));
+		assertTrue(model.getSpace(x, y) != null);
 		//assertEquals(0, model.getSpace(x, y));
 		
 		x = 0;
 		y = 0;
-		assertTrue(model.getSpace(x, y));
+		assertTrue(model.getSpace(x, y) != null);
 		//assertEquals(1, model.getSpace(x, y));
 	}
 	
+	/*
 	@Test
 	public void testSetX() {
 		int x = 2;
@@ -70,4 +73,5 @@ public class ChessBoardTest {
 		model.setY(3);
 		assertEquals(3, model.getY());
 	}
+	*/
 }
