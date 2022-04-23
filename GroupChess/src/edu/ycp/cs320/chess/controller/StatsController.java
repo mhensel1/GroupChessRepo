@@ -35,4 +35,17 @@ public class StatsController {
 			return foundUser;
 		}
 	}
+	
+public void updateStats(String username, int newWin, int newLose) {
+		
+		IDatabase db = DatabaseProvider.getInstance();
+		Integer user_id = db.updateStatsByUser(username, newWin, newLose);
+		
+		if (user_id == -1) {
+			System.out.println("User not found");
+		}
+		else {
+			System.out.println("Stats updated for user ID: " + user_id);
+		}
+	}
 }

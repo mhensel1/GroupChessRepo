@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.ycp.cs320.chess.controller.GameController;
+import edu.ycp.cs320.chess.controller.StatsController;
 import edu.ycp.cs320.chess.model.ChessGame;
 import edu.ycp.cs320.chess.model.ChessPlayer;
 
@@ -41,6 +42,7 @@ public class GameServlet extends HttpServlet {
 		// create ChessGameTest controller - controller does not persist between requests
 		// must recreate it each time a Post comes in
 		GameController controller = new GameController();
+		StatsController statController = new StatsController();
 		
 		// assign model reference to controller so that controller can access model
 		controller.setGameModel(gamemodel);
