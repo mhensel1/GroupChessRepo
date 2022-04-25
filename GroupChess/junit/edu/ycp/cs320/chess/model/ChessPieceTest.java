@@ -22,12 +22,12 @@ public class ChessPieceTest {
 	
 	@Before
 	public void setUp() {
-		pawn = new Pawn(true);
-		rook = new Rook(true);
-		knight = new Knight(true);
-		bishop = new Bishop(true);
-		king = new King(true);
-		queen = new Queen(true);
+		pawn = new Pawn(true, false, false, 2, 3);
+		rook = new Rook(true, false, false, 2, 3);
+		knight = new Knight(true, false, false, 2, 3);
+		bishop = new Bishop(true, false, false, 2, 3);
+		king = new King(true, false, false, 2, 3);
+		queen = new Queen(true, false, false, 2, 3);
 		
 	}
 
@@ -49,5 +49,19 @@ public class ChessPieceTest {
 	@Test
 	public void testQueenHasMoved() {
 		assertEquals(false, queen.hasMoved());
+	}
+	
+	@Test
+	public void testBishopMovement() {
+		//test target location on path
+		assertEquals(true, bishop.validateMove(4, 5));
+		assertEquals(true, bishop.validateMove(4, 1));
+		assertEquals(true, bishop.validateMove(0, 5));
+		assertEquals(true, bishop.validateMove(0, 1));
+		assertEquals(false, bishop.validateMove(4, 3));
+		assertEquals(false, bishop.validateMove(1, 3));
+		
+		//test that a piece cannot move to its current location
+		assertEquals(false, bishop.validateMove(2, 3));
 	}
 }

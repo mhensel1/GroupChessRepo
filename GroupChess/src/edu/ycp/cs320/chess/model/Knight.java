@@ -1,17 +1,27 @@
 package edu.ycp.cs320.chess.model;
 
-public class Knight extends ChessPiece {
+// model class for knight
+
+public class Knight extends ChessPiece{
 	
-    public Knight(boolean white)
-    {
-        super(white);
+	
+	
+	public Knight(boolean color, boolean captured, boolean hasMoved, int x, int y){
+		
+        super(color, captured, hasMoved, x, y);
     }
-  
-    @Override
-    public boolean canMove(ChessBoard board, BoardSpace start, BoardSpace end) {
-        if (end.getPiece().getColor() == this.getColor()) {
-            return false;
-        }
-        return false;
-    }
+	
+	public boolean validateMove(int x, int y) {
+		int deltaX = Math.abs(super.getX() - x);
+		int deltaY = Math.abs(super.getY() - y);
+		
+		if((deltaX == 2 && deltaY == 1) || (deltaY == 2 && deltaX == 1)) {
+			//check collision here
+			return true;
+		}
+		
+		//stub
+		return false;
+	}
+	
 }
