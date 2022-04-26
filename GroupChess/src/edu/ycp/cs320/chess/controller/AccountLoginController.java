@@ -1,10 +1,11 @@
 package edu.ycp.cs320.chess.controller;
 
-import edu.ycp.cs320.booksdb.persist.DatabaseProvider;
-import edu.ycp.cs320.booksdb.persist.DerbyDatabase;
-import edu.ycp.cs320.booksdb.persist.IDatabase;
 import edu.ycp.cs320.chess.model.ChessUser;
-import edu.ycp.cs320.booksdb.model.User;
+import edu.ycp.cs320.gamesDB.model.User;
+import edu.ycp.cs320.gamesDB.persist.DatabaseProvider;
+import edu.ycp.cs320.gamesDB.persist.DerbyDatabase;
+import edu.ycp.cs320.gamesDB.persist.IDatabase;
+
 import java.util.List;
 
 public class AccountLoginController {

@@ -7,10 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import edu.ycp.cs320.booksdb.model.User;
+
 import edu.ycp.cs320.chess.controller.StatsController;
 
 import edu.ycp.cs320.chess.model.ChessUser;
+import edu.ycp.cs320.gamesDB.model.User;
 
 public class UserStatsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

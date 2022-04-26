@@ -1,8 +1,8 @@
 package edu.ycp.cs320.chess.controller;
 
-import edu.ycp.cs320.booksdb.persist.DatabaseProvider;
-import edu.ycp.cs320.booksdb.persist.DerbyDatabase;
-import edu.ycp.cs320.booksdb.persist.IDatabase;
+import edu.ycp.cs320.gamesDB.persist.DatabaseProvider;
+import edu.ycp.cs320.gamesDB.persist.DerbyDatabase;
+import edu.ycp.cs320.gamesDB.persist.IDatabase;
 
 public class CreateAccountController {
 

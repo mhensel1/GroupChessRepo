@@ -9,9 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import edu.ycp.cs320.booksdb.model.User;
 import edu.ycp.cs320.chess.controller.AccountLoginController;
 import edu.ycp.cs320.chess.model.ChessUser;
+import edu.ycp.cs320.gamesDB.model.User;
+
 import java.util.ArrayList;
 
 
