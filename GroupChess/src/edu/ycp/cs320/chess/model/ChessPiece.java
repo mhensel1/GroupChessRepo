@@ -1,5 +1,10 @@
 package edu.ycp.cs320.chess.model;
 
+import edu.ycp.cs320.gamesDB.persist.DatabaseProvider;
+import edu.ycp.cs320.gamesDB.persist.DerbyDatabase;
+import edu.ycp.cs320.gamesDB.persist.IDatabase;
+import edu.ycp.cs320.gamesDB.model.Piece;
+
 public abstract class ChessPiece {
 	  
     private int pieceId;
@@ -8,6 +13,7 @@ public abstract class ChessPiece {
     private boolean color;
     private int x;
     private int y;
+    private IDatabase db = null;
   
     public ChessPiece(boolean color, boolean captured, boolean hasMoved, int x, int y) {
         this.setColor(color);
@@ -15,6 +21,7 @@ public abstract class ChessPiece {
         this.setHasMoved(hasMoved);
         this.setX(x);
         this.setY(y);
+        db = DatabaseProvider.getInstance();
     }
     
     public int getX() {
@@ -41,7 +48,7 @@ public abstract class ChessPiece {
         this.color = color;
     }
   
-    public boolean captured() {
+    public boolean getCaptured() {
         return this.captured;
     }
   
@@ -53,8 +60,12 @@ public abstract class ChessPiece {
         this.hasMoved = moved;
     }
     
-	public boolean hasMoved() {
+	public boolean getHasMoved() {
 		return hasMoved;
+	}
+	
+	public IDatabase getDb() {
+		return db;
 	}
 	
   

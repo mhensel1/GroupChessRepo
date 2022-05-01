@@ -1,21 +1,13 @@
 package edu.ycp.cs320.chess.model;
 
+import java.util.List;
+import edu.ycp.cs320.gamesDB.model.Piece;
+
 public class King extends ChessPiece {
-    private boolean castlingDone = false;
   
     public King(boolean color, boolean captured, boolean hasMoved, int x, int y){
 		
         super(color, captured, hasMoved, x, y);
-    }
-  
-    public boolean isCastlingDone()
-    {
-        return this.castlingDone;
-    }
-  
-    public void setCastlingDone(boolean castlingDone)
-    {
-        this.castlingDone = castlingDone;
     }
   
     @Override
@@ -27,14 +19,23 @@ public class King extends ChessPiece {
     	
     	if(deltaX <= 1 && deltaY <= 1) {
     		//check collision here
+    		List<Piece> pieceList = super.getDb().findPieceByColorAndXY(super.getColor(), x, y);
+    		if(!pieceList.isEmpty()) {
+    			return false;
+    		}
+    		super.setHasMoved(true);
     		return true;
     	}
-    	
-    	//stub	
     	return false;
      }
+    
+    public boolean isChecked() {
+    	
+    	//stub
+    	return false;
+    }
   
-    private boolean isValidCastling(ChessBoard board, BoardSpace start, BoardSpace end)
+    private boolean isValidCastling(Rook rook)
     {
             return false;
     }

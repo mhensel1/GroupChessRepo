@@ -17,6 +17,10 @@ public class Knight extends ChessPiece{
 		
 		if((deltaX == 2 && deltaY == 1) || (deltaY == 2 && deltaX == 1)) {
 			//check collision here
+			if(!super.getDb().findPieceByXY(x, y).isEmpty()) {
+				return false;
+			}
+			super.setHasMoved(true);
 			return true;
 		}
 		

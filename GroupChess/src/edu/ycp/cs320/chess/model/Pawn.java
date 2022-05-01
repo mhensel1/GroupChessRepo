@@ -10,16 +10,43 @@ public class Pawn extends ChessPiece {
     @Override
     public boolean validateMove(int x, int y) {
     	
-    	int deltaX = super.getX() - x;
+    	int deltaX = Math.abs(super.getX() - x);
     	int deltaY = super.getY() - y;
     	
     	if(super.getColor()) {
     		if(deltaY == -1 /*query xy*/) {
-    			return true;
+    			if(deltaX == 1 && !super.getDb().findPieceByColorAndXY(!super.getColor(), x, y).isEmpty()) {
+    				return true;
+    			}else if(deltaX == 0 && super.getDb().findPieceByXY(x, y).isEmpty()) {
+    				return true;
+    			}else {
+    				return false;
+    			}
+    		}else if(deltaY == -2) {
+    			if(deltaX == 0 && !super.getHasMoved() && super.getDb().findPieceByXY(x, y).isEmpty()) {
+    				return true;
+    			}else {
+    				return false;
+    			}
+    		}
+    	}else {
+    		if(deltaY == 1 /*query xy*/) {
+    			if(deltaX == 1 && !super.getDb().findPieceByColorAndXY(!super.getColor(), x, y).isEmpty()) {
+    				return true;
+    			}else if(deltaX == 0 && super.getDb().findPieceByXY(x, y).isEmpty()) {
+    				return true;
+    			}else {
+    				return false;
+    			}
+    		}else if(deltaY == 2) {
+    			if(deltaX == 0 && !super.getHasMoved() && super.getDb().findPieceByXY(x, y).isEmpty()) {
+    				return true;
+    			}else {
+    				return false;
+    			}
     		}
     	}
     	
-        //stub 
        	return false;
     }
 }
