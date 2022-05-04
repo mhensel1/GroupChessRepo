@@ -40,11 +40,11 @@
 				</tr>
 				<tr>
 					<td class="label">Password:</td>
-					<td><input type="text" name="pass" size="12" value="${pass}" /></td>
+					<td><input type="password" name="pass" size="12" value="${pass}" /></td>
 				</tr>
                 <tr>
 					<td class="label">Verify Password:</td>
-					<td><input type="text" name="pass2" size="12" value="${pass2}" /></td>
+					<td><input type="password" name="pass2" size="12" value="${pass2}" /></td>
 				</tr>
 			<input type="Submit" name="submit" value="Create Account">
 		</form>

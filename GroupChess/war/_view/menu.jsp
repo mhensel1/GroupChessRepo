@@ -37,8 +37,8 @@
             <input name="loadGame" type="Submit" value="Load Game">
             	</form>
         
-        <form action="${pageContext.servletContext.contextPath}/Game" method="get">
-            <input name="findGame" type="Submit" value="Find Game">
+        <form action="${pageContext.servletContext.contextPath}/GameSelect" method="get">
+            <input name="findGame" type="Submit" value="Join Game">
             </form>
         
             <form action="${pageContext.servletContext.contextPath}/History" method="get">

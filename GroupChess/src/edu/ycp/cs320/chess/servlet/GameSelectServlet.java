@@ -12,25 +12,32 @@ import edu.ycp.cs320.chess.controller.UserController;
 import edu.ycp.cs320.chess.controller.MenuController;
 import edu.ycp.cs320.chess.model.ChessPiece;
 import edu.ycp.cs320.chess.model.ChessUser;
+import edu.ycp.cs320.gamesDB.model.Pair;
 import edu.ycp.cs320.gamesDB.model.Game;
-import java.util.ArrayList;
+import edu.ycp.cs320.gamesDB.model.User;
 import java.util.List;
+import java.util.ArrayList;
 
-public class MenuServlet extends HttpServlet {
+public class GameSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		System.out.println("MainMenu Servlet: doGet");	
+		System.out.println("GameSelect Servlet: doGet");	
 		
 		
 		ChessUser userModel = new ChessUser();
+		MenuController menuController = new MenuController();
 		
 		HttpSession session = req.getSession();
 		String username = (String) session.getAttribute("user");
 		userModel.setUser(username);
+		
+		List<Game> gameList;
+		gameList = menuController.findGamesWithoutOpps();
+		req.setAttribute("gamesNum", gameList.size());
 		
 		
 		System.out.println("Welcome: " + userModel.getUser());
@@ -38,7 +45,7 @@ public class MenuServlet extends HttpServlet {
 		req.setAttribute("user", userModel.getUser()); //code for displaying username in menu
 		req.setAttribute("ChessUser", userModel);
 			
-		req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/gameSelect.jsp").forward(req, resp);
 	}
 	
 	
@@ -52,46 +59,43 @@ public class MenuServlet extends HttpServlet {
 		MenuController menuController = new MenuController();
 		
 		ChessUser userModel = new ChessUser();
-		UserStatsServlet stats = new UserStatsServlet();
+		GameServlet gameServe = new GameServlet();
 		
 		HttpSession session = req.getSession(); //code for displaying username in menu
 		String username = (String) session.getAttribute("user");
 		userModel.setUser(username);
-		//List<Game> gameList;
-		//session = req.getSession();
-		GameSelectServlet select = new GameSelectServlet();
 		
 		System.out.println("Welcome: " + userModel.getUser());
 		
 		req.setAttribute("user", userModel.getUser());
 		req.setAttribute("ChessUser", userModel);
+		int user_id = menuController.findUserIdByUsername(userModel.getUser());
+		int game_id=0;
 		
+		List<Game> gameList;
+		gameList = menuController.findGamesWithoutOpps();
 		
-		
+		for (Integer i=1; i <=gameList.size(); i++) {
+			Game game = gameList.get(i);
+			game_id = game.getGameId();
+			String iString = i.toString();
+			if (req.getParameter("gamePick"+iString+"") != null) {
+				menuController.addUserIdToOppId(game_id, user_id);
+				session.setAttribute("game_id", game_id);
+				gameServe.doGet(req, resp);
+				req.getRequestDispatcher("/_viewgame.jsp").forward(req, resp);
+			}
+		}
 		if (req.getParameter("loadGame") != null) {
+			req.setAttribute("game_id", 2); //game id attribute to pass (throughout session?)
 			req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);
-		} else if (req.getParameter("findGame") != null) {
-			//gameList = menuController.findGamesWithoutOpps();
-			//session.setAttribute("gamesNum", gameList.size());
-			req.getServletContext().getRequestDispatcher("/GameSelect");
-			select.doGet(req, resp);
-			req.getRequestDispatcher("/_view/gameSelect.jsp").forward(req, resp);
-			//req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);		//verify if a button is pressed and call new jsp to render desired page
-		} else if (req.getParameter("viewStats") != null) {
-			req.getServletContext().getRequestDispatcher("/MenuServlet");
-			stats.doGet(req, resp);
-			req.getRequestDispatcher("/_view/stats.jsp").forward(req, resp);
-		} else if (req.getParameter("viewHistory") != null) {
-			req.getRequestDispatcher("/_view/history.jsp").forward(req, resp);
-		} else if (req.getParameter("logOut") != null) {
-			req.getRequestDispatcher("/_view/homepage.jsp").forward(req, resp);
-		} else {
+		}else {
 			throw new ServletException("Unknown command");
 		}
 		
 		
 		
-				req.getRequestDispatcher("/_view/menu.jsp").forward(req, resp);	//Call Jsp to render new page
+				req.getRequestDispatcher("/_view/gameSelect.jsp").forward(req, resp);	//Call Jsp to render new page
 			}
 			
 }
