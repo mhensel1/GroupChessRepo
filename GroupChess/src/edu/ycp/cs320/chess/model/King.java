@@ -30,7 +30,36 @@ public class King extends ChessPiece {
      }
     
     public boolean isChecked() {
-    	
+    	List<Piece> opponentPieces = super.getDb().findAllPiecesByColor(!super.getColor());
+    	for(Piece currentPiece: opponentPieces) {
+    		String type = currentPiece.getType();
+    		ChessPiece revisedPiece = null;
+    		switch(type) {
+    		case "pawn":
+    			revisedPiece = new Pawn(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosX(), currentPiece.getPosY());
+    			break;
+    		case "knight":
+    			revisedPiece = new Knight(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosX(), currentPiece.getPosY());
+    			break;
+    		case "rook":
+    			revisedPiece = new Rook(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosX(), currentPiece.getPosY());
+    			break;
+    		case "bishop":
+    			revisedPiece = new Bishop(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosX(), currentPiece.getPosY());
+    			break;
+    		case "queen":
+    			revisedPiece = new Queen(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosX(), currentPiece.getPosY());
+    			break;
+    		case "king":
+    			revisedPiece = new King(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosX(), currentPiece.getPosY());
+    			break;
+    		default:
+    			System.out.println("something has gone horribly wrong, piece doesnt exist");
+    		}
+    		if(revisedPiece.validateMove(super.getX(), super.getY())) {
+    			return true;
+    		}
+    	}
     	//stub
     	return false;
     }
