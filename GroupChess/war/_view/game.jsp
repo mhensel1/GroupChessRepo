@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+    
 <html>
 	<head>
         
@@ -33,6 +35,16 @@
                 width: 510px;
                 text-align: center;
 		}
+                    .chat {
+				width: 260px;
+                height: 200px;
+                position:absolute;
+                margin-left: 25px;
+                top:320px;
+                left: 10px;
+                background-color: whitesmoke;
+				border: 5px solid #111;
+		}
         .pieces {
 				background-color: #C90000;
 				 width: 260px;
@@ -60,12 +72,24 @@
                 margin: auto;
                 border: 5px solid #111;
         }
+                    .chessboard2 {
+                width: 480px;
+                height: 480px;
+                margin: auto;
+                border: 5px solid #111;
+        }
+          .chessboard3 {
+                width: 480px;
+                height: 480px;
+                margin: auto;
+                border: 5px solid #111;
+        }
         .black {
                 float: left;
                 width: 60px;
                 height: 60px;
                 background-color: darkred;
-                font-size:60px;
+                font-size:20px;
                 text-align:center;
                 display: table-cell;
                 vertical-align:middle;
@@ -75,7 +99,7 @@
                 width: 60px;
                 height: 60px;
                 background-color: #ffd9b3;
-                font-size:60px;
+                font-size:20px;
                 text-align:center;
                 display: table-cell;
                 vertical-align:middle;
@@ -401,6 +425,38 @@
             <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="whiteKnight2" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
             <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="whiteRook2" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
         </div>
+        
+          <div class="chessboard" id="board">
+            <form action="${pageContext.servletContext.contextPath}/Game" method="post">
+					<!-- Row 1 -->
+						<input name="a8" type="submit" value="bRook" class="white"/>
+						<input name="b8" type="submit" value="bKnight" class="black"/>
+                        <input name="c8" type="submit" value="bBishop" class="white"/>
+						<input name="d8" type="submit" value="bQueen" class="black"/>
+                        <input name="e8" type="submit" value="bKing" class="white"/>
+						<input name="f8" type="submit" value="bBishop" class="black"/>
+                        <input name="g8" type="submit" value="bKnight" class="white"/>
+						<input name="h8" type="submit" value="bRook" class="black"/>
+                <!-- Row 2 -->
+						<input name="a7" type="submit" value="bPawn" class="black"/>
+						<input name="b7" type="submit" value="bPawn" class="white"/>
+                        <input name="c7" type="submit" value="bPawn" class="black"/>
+						<input name="d7" type="submit" value="bPawn" class="white"/>
+                        <input name="e7" type="submit" value="bPawn" class="black"/>
+						<input name="f7" type="submit" value="bPawn" class="white"/>
+                        <input name="g7" type="submit" value="bPawn" class="black"/>
+						<input name="h7" type="submit" value="bPawn" class="white"/>
+                <!-- Row 3 -->
+						<input name="a6" type="submit" value="" class="white"/>
+						<input name="b6" type="submit" value="" class="black"/>
+                        <input name="c6" type="submit" value="" class="white"/>
+						<input name="d6" type="submit" value="" class="black"/>
+                        <input name="e6" type="submit" value="" class="white"/>
+						<input name="f6" type="submit" value="" class="black"/>
+                        <input name="g6" type="submit" value="" class="white"/>
+						<input name="h6" type="submit" value="" class="black"/>
+                 </form>
+         </div>
         
 		<div class = "input">
             

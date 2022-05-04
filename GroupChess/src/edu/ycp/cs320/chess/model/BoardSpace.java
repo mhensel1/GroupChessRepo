@@ -16,7 +16,7 @@ public class BoardSpace {
     }
     
     public ChessPiece getPiece() {
-        return this.chessPiece;
+        return chessPiece;
     }
     
     public void setX(int x) {

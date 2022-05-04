@@ -5,31 +5,30 @@ import java.util.List;
 // model class for ChessGame
 
 public class ChessGame {
-    private int[] players;
     private int turnCounter;
 	private int lobbyCode;
-    private ChessPlayer[] chessPlayers;
-    private ChessBoard board;
-    private ChessPlayer currentTurn;
     private boolean gameOver;
+    private ChessBoard chessBoard;
+    private ChessPlayer player1;
+    private ChessPlayer player2;
+    private BoardSpace piecetoMove;
+    private BoardSpace dest;
   
-    public ChessGame(ChessPlayer WhitePlayer, ChessPlayer BlackPlayer)
+    public ChessGame()
     {
-        chessPlayers[0] = WhitePlayer;
-        chessPlayers[1] = BlackPlayer;
-        board.createBoard();
-  
-        if (WhitePlayer.getColor() == true) {
-            this.currentTurn = WhitePlayer;
-        }
-        else {
-            this.currentTurn = BlackPlayer;
-        }
-        
+      
     }
   
+    public void setGameBoard(ChessBoard board) {
+        this.chessBoard = board;
+    }
+    
+    public ChessBoard getGameBoard(ChessBoard board) {
+        return chessBoard;
+    }
+    
     public boolean getGameOver() {
-        return this.getGameOver();
+    	  return gameOver;
     }
   
     public void setGameOver(boolean gameOver) {

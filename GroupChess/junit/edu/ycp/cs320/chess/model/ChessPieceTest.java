@@ -28,31 +28,32 @@ public class ChessPieceTest {
 		bishop = new Bishop(true, false, false, 2, 3);
 		king = new King(true, false, false, 2, 3);
 		queen = new Queen(true, false, false, 2, 3);
-		
 	}
 
 	@Test
 	public void testPawnHasMoved() {
-		assertEquals(false, pawn.hasMoved());
+		assertEquals(false, pawn.getHasMoved());
+		
 	}
 	
 	@Test
 	public void testRookHasMoved() {
-		assertEquals(false, rook.hasMoved());
+		assertEquals(false, rook.getHasMoved());
 	}
 	
 	@Test
 	public void testKingHasMoved() {
-		assertEquals(false, king.hasMoved());
+		assertEquals(false, king.getHasMoved());
 	}
 	
 	@Test
 	public void testQueenHasMoved() {
-		assertEquals(false, queen.hasMoved());
+		assertEquals(false, queen.getHasMoved());
 	}
 	
 	@Test
 	public void testBishopMovement() {
+		
 		//test target location on path
 		assertEquals(true, bishop.validateMove(4, 5));
 		assertEquals(true, bishop.validateMove(4, 1));
