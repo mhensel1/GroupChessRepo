@@ -38,6 +38,7 @@ public class GameSelectServlet extends HttpServlet {
 		List<Game> gameList;
 		gameList = menuController.findGamesWithoutOpps();
 		req.setAttribute("gamesNum", gameList.size());
+		req.setAttribute("games", gameList);
 		
 		
 		System.out.println("Welcome: " + userModel.getUser());
@@ -75,13 +76,15 @@ public class GameSelectServlet extends HttpServlet {
 		List<Game> gameList;
 		gameList = menuController.findGamesWithoutOpps();
 		
-		for (Integer i=1; i <=gameList.size(); i++) {
-			Game game = gameList.get(i);
+		for (Integer i=1; i <=gameList.size()+1; i++) {
+			System.out.println(i);
+			Game game = gameList.get(i-1);
 			game_id = game.getGameId();
 			String iString = i.toString();
-			if (req.getParameter("gamePick"+iString+"") != null) {
+			if (req.getParameter("loadGame"+iString+"") != null) {
 				menuController.addUserIdToOppId(game_id, user_id);
 				session.setAttribute("game_id", game_id);
+				System.out.println("Game Id: " + game_id);
 				gameServe.doGet(req, resp);
 				req.getRequestDispatcher("/_viewgame.jsp").forward(req, resp);
 			}

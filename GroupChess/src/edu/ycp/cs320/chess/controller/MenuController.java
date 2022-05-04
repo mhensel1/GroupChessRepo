@@ -49,7 +49,25 @@ public class MenuController {
 		}
 		return user_id;
 	}
-
+	
+	public int createGame(int user_id, String username) {
+		db.insertNewGame(user_id);
+		Game game = null;
+		List<Pair<User, Game>> userGames = db.findUserAndGameByUserName(username);
+		for (Pair<User, Game> userGame : userGames) {
+			game = userGame.getRight();
+		}
+		return game.getGameId();
+	}
+	
+	public User getUser(String username) {
+		List<User> users = db.findUserbyUsername(username);
+		User toReturn = null;
+		for (User user : users) {
+			toReturn = user;
+		}
+		return toReturn;
+	}
 	
 	
 }

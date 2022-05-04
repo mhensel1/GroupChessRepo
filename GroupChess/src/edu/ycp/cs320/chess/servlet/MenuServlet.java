@@ -13,6 +13,7 @@ import edu.ycp.cs320.chess.controller.MenuController;
 import edu.ycp.cs320.chess.model.ChessPiece;
 import edu.ycp.cs320.chess.model.ChessUser;
 import edu.ycp.cs320.gamesDB.model.Game;
+import edu.ycp.cs320.gamesDB.model.User;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,15 +61,20 @@ public class MenuServlet extends HttpServlet {
 		//List<Game> gameList;
 		//session = req.getSession();
 		GameSelectServlet select = new GameSelectServlet();
+		GameServlet toGame = new GameServlet();
 		
 		System.out.println("Welcome: " + userModel.getUser());
 		
 		req.setAttribute("user", userModel.getUser());
 		req.setAttribute("ChessUser", userModel);
-		
+		User trueUser = menuController.getUser(username);
 		
 		
 		if (req.getParameter("loadGame") != null) {
+			int game_id = menuController.createGame(trueUser.getUserId(), username);
+			session.setAttribute("game_id", game_id);
+			req.getServletContext().getRequestDispatcher("/Game");
+			toGame.doGet(req, resp);
 			req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);
 		} else if (req.getParameter("findGame") != null) {
 			//gameList = menuController.findGamesWithoutOpps();

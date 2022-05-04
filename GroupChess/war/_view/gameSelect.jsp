@@ -26,10 +26,11 @@
 			}
 		</style>
 		
+		<!-- Script not used, saved for reference -->
 		<script>
 			var x ="", i;
 			for (i=1; i<= ${gamesNum}; i++){
-				x = x + '<form id = ' + i + ' action = "{pageContext.servletContext.contextPath}/GameSelect" method = "post">';
+				x = x + '<form id = ' + i + ' action = "${pageContext.servletContext.contextPath}/GameSelect" method = "post">';
 				x += '<input name = "gamePick"'+i+'"" type = "Submit" value = "GameNum"></form>';
 			}
 			document.getElementById("games").innHTML = x;
@@ -45,10 +46,14 @@
 		
 		<div class="welcome">Select a Game</div>
 		<div id ="games"></div>
-		
-		<form action="${pageContext.servletContext.contextPath}/Game" method="get">
-            <input name="loadGame1" type="Submit" value="Game 1">
-        </form>
+	
+		<c:set var="count" value="1" scope="page" />
+		<c:forEach var="game" items="${games}">
+			<form action="${pageContext.servletContext.contextPath}/GameSelect" method="post">
+            	<input name="loadGame${count}" type="Submit" value="Game ${count}">
+        	</form>
+        	<c:set var="count" value="${count + 1}" scope="page"/>
+		</c:forEach>
         
        
 	</body>

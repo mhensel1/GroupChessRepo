@@ -35,7 +35,10 @@
     <servlet-class>edu.ycp.cs320.chess.servlet.LoginServlet</servlet-class>
   </servlet>
 
-  <!-- Servlet mappings -->
+  <servlet>
+  	<servlet-name>GameSelectServlet</servlet-name>
+  	<servlet-class>edu.ycp.cs320.chess.servlet.GameSelectServlet</servlet-class>
+  </servlet><!-- Servlet mappings -->
   <servlet-mapping>
     <servlet-name>CreateAccountServlet</servlet-name>
     <url-pattern>/CreateAccount</url-pattern>
@@ -64,7 +67,11 @@
     <servlet-name>GameHistoryServlet</servlet-name>
     <url-pattern>/History</url-pattern>
   </servlet-mapping>
-  <welcome-file-list>
+  <servlet-mapping>
+  	<servlet-name>GameSelectServlet</servlet-name>
+  	<url-pattern>/GameSelect</url-pattern>
+  </servlet-mapping><welcome-file-list>
     <welcome-file>Homepage.html</welcome-file>
   </welcome-file-list>
+  
 </web-app>
