@@ -69,5 +69,10 @@ public class MenuController {
 		return toReturn;
 	}
 	
+	public void addUserIDtoGame(int user_id, int game_id) {
+		int id = db.addUserIDtoGame(user_id, game_id);
+		System.out.println("User id int Game "+ game_id + " set to " + id);
+	}
+	
 	
 }

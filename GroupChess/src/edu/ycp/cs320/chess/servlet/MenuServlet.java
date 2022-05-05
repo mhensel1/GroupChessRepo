@@ -72,8 +72,11 @@ public class MenuServlet extends HttpServlet {
 		
 		
 		if (req.getParameter("loadGame") != null) {
-			int game_id = menuController.createGame(trueUser.getUserId(), username);
+			//int game_id = menuController.createGame(trueUser.getUserId(), username);
+			int game_id = 2; //game 2 is the only one with pieces associated in db :/
 			session.setAttribute("game_id", game_id);
+			menuController.addUserIDtoGame(trueUser.getUserId(), game_id);
+			System.out.println(game_id);
 			req.getServletContext().getRequestDispatcher("/Game");
 			toGame.doGet(req, resp);
 			req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);
