@@ -33,7 +33,7 @@
 		</c:if>
 		
 		<div class="welcome">Welcome ${user}</div>
-		<form action="${pageContext.servletContext.contextPath}/Game" method="get">
+		<form action="${pageContext.servletContext.contextPath}/Menu" method="post">
             <input name="loadGame" type="Submit" value="Load Game">
             	</form>
         

@@ -308,161 +308,74 @@
 	</head>
     
     <body>
-      
-        <div class ="player">
-			White Players Turn
-		</div>
-        
-        <div class="pieces" >
-            <div style="height: 32px; background-color: #C90000;border: 3px solid #111;  color: black;
-				font-size: 28px;">
-                Captured Pieces
-            </div>
-           
-        </div>
-        
-        <div class="text">
-         <div style="height: 32px; background-color: #C90000;border: 3px solid #111;  color: black;
-				font-size: 28px;">
-                Player Chat
-            </div>
-        </div>
-        
-        <div class="chessboard">
-            <!-- Row 1 (a8 b8 c8 d8 e8 f8 g8 h8) -->
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackRook1" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"> 
-                
-            <form action="${pageContext.servletContext.contextPath}/Game" method="get" id="form_id" class="form_class">
-            <input name="selectPiece" type="hidden" value="select Piece">
-            </form>
-                
-    
-                
-            </div>
-            
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackKnight1" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackBishop1" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackKing" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackQueen" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackRook2" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackKnight2" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackBishop2" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-
-            <!-- Row 2 a7 b7 c7 d7 e7 f7 g7 h7 -->
-            <div class="black" ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackPawn1" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackPawn2" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackPawn3" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackPawn4" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackPawn5" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackPawn6" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackPawn7" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="blackPawn8" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-
-            <!-- Row 3 a6 b6 c6 d6 e6 f6 g6 h6 -->
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-
-            <!-- Row 4 a5 b5 c5 d5 e5 f5 g5 h5 -->
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="white" ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-
-            <!-- Row 5 a4 b4 c4 d4 e4 f4 g4 h4 -->
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-
-            <!-- Row 6 a3 b3 c3 d3 e3 f3 g3 h3 -->
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-            <div class="white" ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
-
-            <!-- Row 7 a2 b2 c2 d2 e2 f2 g2 h2 -->
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="whitePawn1" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"> </div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="whitePawn2" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="whitePawn3" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="whitePawn4" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="whitePawn5" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="whitePawn6" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="whitePawn7" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="whitePawn8" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-
-            <!-- Row 8 a1 b1 c1 d1 e1 f1 g1 h1 -->
-            <div class="black" ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="whiteRook1" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="whiteKnight1" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="whiteBishop1" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="whiteKing" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="whiteQueen" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="whiteBishop2" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            <div class="black"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="whiteKnight2" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-            <div class="white"ondrop="dragDrop(event)" ondragover="allowDrop(event)"><img id="whiteRook2" src= "_view/transparent.png" draggable="true" ondragstart="dragStart(event)"  width="1" height="1"></div>
-        </div>
-        
-          <div class="chessboard" id="board">
-            <form action="${pageContext.servletContext.contextPath}/Game" method="post">
-					<!-- Row 1 -->
-						<input name="a8" type="submit" value="bRook" class="white"/>
-						<input name="b8" type="submit" value="bKnight" class="black"/>
-                        <input name="c8" type="submit" value="bBishop" class="white"/>
-						<input name="d8" type="submit" value="bQueen" class="black"/>
-                        <input name="e8" type="submit" value="bKing" class="white"/>
-						<input name="f8" type="submit" value="bBishop" class="black"/>
-                        <input name="g8" type="submit" value="bKnight" class="white"/>
-						<input name="h8" type="submit" value="bRook" class="black"/>
-                <!-- Row 2 -->
-						<input name="a7" type="submit" value="bPawn" class="black"/>
-						<input name="b7" type="submit" value="bPawn" class="white"/>
-                        <input name="c7" type="submit" value="bPawn" class="black"/>
-						<input name="d7" type="submit" value="bPawn" class="white"/>
-                        <input name="e7" type="submit" value="bPawn" class="black"/>
-						<input name="f7" type="submit" value="bPawn" class="white"/>
-                        <input name="g7" type="submit" value="bPawn" class="black"/>
-						<input name="h7" type="submit" value="bPawn" class="white"/>
-                <!-- Row 3 -->
-						<input name="a6" type="submit" value="" class="white"/>
-						<input name="b6" type="submit" value="" class="black"/>
-                        <input name="c6" type="submit" value="" class="white"/>
-						<input name="d6" type="submit" value="" class="black"/>
-                        <input name="e6" type="submit" value="" class="white"/>
-						<input name="f6" type="submit" value="" class="black"/>
-                        <input name="g6" type="submit" value="" class="white"/>
-						<input name="h6" type="submit" value="" class="black"/>
-                 </form>
-         </div>
-        
-		<div class = "input">
-            
-        <form action="${pageContext.servletContext.contextPath}/Game" method="get">
+    	${error}
+      	<c:set var="count" value="0" scope="page" />
+      	<c:forEach var="num" items="${rows}">
+      		<form action="${pageContext.servletContext.contextPath}/Game" method="post">
+            	<input name="0${count}" type="Submit" value="0${count}">
+        	</form>
+        	<c:set var="count" value="${count + 1}" scope="page"/>
+      	</c:forEach>
+      	
+      	<c:set var="count2" value="0" scope="page" />
+      	<c:forEach var="num" items="${rows}">
+      		<form action="${pageContext.servletContext.contextPath}/Game" method="post">
+            	<input name="1${count2}" type="Submit" value="1${count2}">
+        	</form>
+        	<c:set var="count2" value="${count2 + 1}" scope="page"/>
+      	</c:forEach>
+      	
+      	<c:set var="count3" value="0" scope="page" />
+      	<c:forEach var="num" items="${rows}">
+      		<form action="${pageContext.servletContext.contextPath}/Game" method="post">
+            	<input name="2${count3}" type="Submit" value="2${count3}">
+        	</form>
+        	<c:set var="count3" value="${count3 + 1}" scope="page"/>
+      	</c:forEach>
+      	
+      	<c:set var="count4" value="0" scope="page" />
+      	<c:forEach var="num" items="${rows}">
+      		<form action="${pageContext.servletContext.contextPath}/Game" method="post">
+            	<input name="3${count4}" type="Submit" value="3${count4}">
+        	</form>
+        	<c:set var="count4" value="${count4 + 1}" scope="page"/>
+      	</c:forEach>
+      	
+      	<c:set var="count5" value="0" scope="page" />
+      	<c:forEach var="num" items="${rows}">
+      		<form action="${pageContext.servletContext.contextPath}/Game" method="post">
+            	<input name="4${count5}" type="Submit" value="4${count5}">
+        	</form>
+        	<c:set var="count5" value="${count5 + 1}" scope="page"/>
+      	</c:forEach>
+      	
+      	<c:set var="count6" value="0" scope="page" />
+      	<c:forEach var="num" items="${rows}">
+      		<form action="${pageContext.servletContext.contextPath}/Game" method="post">
+            	<input name="5${count6}" type="Submit" value="5${count6}">
+        	</form>
+        	<c:set var="count6" value="${count6 + 1}" scope="page"/>
+      	</c:forEach>
+      	
+      	<c:set var="count7" value="0" scope="page" />
+      	<c:forEach var="num" items="${rows}">
+      		<form action="${pageContext.servletContext.contextPath}/Game" method="post">
+            	<input name="6${count7}" type="Submit" value="6${count7}">
+        	</form>
+        	<c:set var="count7" value="${count7 + 1}" scope="page"/>
+      	</c:forEach>
+      	
+      	<c:set var="count8" value="0" scope="page" />
+      	<c:forEach var="num" items="${rows}">
+      		<form action="${pageContext.servletContext.contextPath}/Game" method="post">
+            	<input name="7${count8}" type="Submit" value="7${count8}">
+        	</form>
+        	<c:set var="count8" value="${count8 + 1}" scope="page"/>
+      	</c:forEach>
+      	
+      	<form action="${pageContext.servletContext.contextPath}/Game" method="get">
             <input name="endTurn" type="Submit" value="End Turn">
-        </form>
+        </form><!-- unnecessary? -->
             
         <form action="${pageContext.servletContext.contextPath}/Game" method="get">
             <input name="saveGame" type="Submit" value="Save Game">
@@ -479,7 +392,6 @@
         <form action="http://www.uschess.org/index.php/Learn-About-Chess/Learn-to-Play-Chess.html">
             <input type="submit" value="Learn to Play" />
         </form>
-            
-        </div>
+      	
 	</body>
 </html>
