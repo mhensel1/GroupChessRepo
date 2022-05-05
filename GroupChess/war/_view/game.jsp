@@ -72,17 +72,13 @@
                 margin: auto;
                 border: 5px solid #111;
         }
-                    .chessboard2 {
-                width: 480px;
-                height: 480px;
-                margin: auto;
-                border: 5px solid #111;
-        }
-          .chessboard3 {
-                width: 480px;
-                height: 480px;
-                margin: auto;
-                border: 5px solid #111;
+        .space {
+                width: 60px;
+                height: 60px;
+                float: left;
+                text-align: center;
+                display: table-cell;
+                vertical-align:middle;
         }
         .black {
                 float: left;
@@ -308,70 +304,119 @@
 	</head>
     
     <body>
+         <div class="chessboard" id="board">
     	${error}
       	<c:set var="count" value="0" scope="page" />
       	<c:forEach var="num" items="${rows}">
-      		<form action="${pageContext.servletContext.contextPath}/Game" method="post">
-            	<input name="0${count}" type="Submit" value="0${count}">
+            
+      		<form action="${pageContext.servletContext.contextPath}/Game" method="post" class="space"> 
+                <c:if test = "${count % 2 == 0}">
+            	<input name="0${count}" type="Submit" value="0${count}" class="white">
+                 </c:if>
+                  <c:if test = "${count % 2 != 0}">
+            	<input name="0${count}" type="Submit" value="0${count}" class="black">
+                 </c:if>
         	</form>
+            
         	<c:set var="count" value="${count + 1}" scope="page"/>
       	</c:forEach>
+             
       	
       	<c:set var="count2" value="0" scope="page" />
       	<c:forEach var="num" items="${rows}">
-      		<form action="${pageContext.servletContext.contextPath}/Game" method="post">
-            	<input name="1${count2}" type="Submit" value="1${count2}">
+            
+      		<form action="${pageContext.servletContext.contextPath}/Game" method="post" class="space">
+            	  <c:if test = "${count2 % 2 == 0}">
+            	<input name="1${count2}" type="Submit" value="1${count2}" class="black">
+                 </c:if>
+                  <c:if test = "${count2 % 2 != 0}">
+            	<input name="1${count2}" type="Submit" value="1${count2}" class="white">
+                 </c:if>
         	</form>
+            
         	<c:set var="count2" value="${count2 + 1}" scope="page"/>
       	</c:forEach>
       	
       	<c:set var="count3" value="0" scope="page" />
       	<c:forEach var="num" items="${rows}">
-      		<form action="${pageContext.servletContext.contextPath}/Game" method="post">
-            	<input name="2${count3}" type="Submit" value="2${count3}">
+      		<form action="${pageContext.servletContext.contextPath}/Game" method="post" class="space">
+                <c:if test = "${count3 % 2 == 0}">
+            	<input name="2${count3}" type="Submit" value="2${count3}" class="white">
+                 </c:if>
+                  <c:if test = "${count3 % 2 != 0}">
+            	<input name="2${count3}" type="Submit" value="2${count3}" class="black">
+                 </c:if>
         	</form>
         	<c:set var="count3" value="${count3 + 1}" scope="page"/>
       	</c:forEach>
       	
       	<c:set var="count4" value="0" scope="page" />
       	<c:forEach var="num" items="${rows}">
-      		<form action="${pageContext.servletContext.contextPath}/Game" method="post">
-            	<input name="3${count4}" type="Submit" value="3${count4}">
+      		<form action="${pageContext.servletContext.contextPath}/Game" method="post" class="space">
+            	 <c:if test = "${count4 % 2 == 0}">
+            	<input name="3${count4}" type="Submit" value="3${count4}" class="black">
+                 </c:if>
+                  <c:if test = "${count4 % 2 != 0}">
+            	<input name="3${count4}" type="Submit" value= "3${count4}" class="white">
+                 </c:if>
         	</form>
         	<c:set var="count4" value="${count4 + 1}" scope="page"/>
       	</c:forEach>
       	
       	<c:set var="count5" value="0" scope="page" />
       	<c:forEach var="num" items="${rows}">
-      		<form action="${pageContext.servletContext.contextPath}/Game" method="post">
-            	<input name="4${count5}" type="Submit" value="4${count5}">
+      		<form action="${pageContext.servletContext.contextPath}/Game" method="post" class="space">
+            	 <c:if test = "${count5 % 2 == 0}">
+            	<input name="4${count5}" type="Submit" value="4${count5}" class="white">
+                 </c:if>
+                  <c:if test = "${count5 % 2 != 0}">
+            	<input name="4${count5}" type="Submit" value= "4${count5}" class="black">
+                 </c:if>
         	</form>
         	<c:set var="count5" value="${count5 + 1}" scope="page"/>
       	</c:forEach>
       	
       	<c:set var="count6" value="0" scope="page" />
       	<c:forEach var="num" items="${rows}">
-      		<form action="${pageContext.servletContext.contextPath}/Game" method="post">
-            	<input name="5${count6}" type="Submit" value="5${count6}">
+      		<form action="${pageContext.servletContext.contextPath}/Game" method="post" class="space">
+             <c:if test = "${count6 % 2 == 0}">
+            	<input name="5${count6}" type="Submit" value="5${count6}" class="black">
+                 </c:if>
+                  <c:if test = "${count6 % 2 != 0}">
+            	<input name="5${count6}" type="Submit" value= "5${count6}" class="white">
+                 </c:if>
         	</form>
         	<c:set var="count6" value="${count6 + 1}" scope="page"/>
       	</c:forEach>
       	
       	<c:set var="count7" value="0" scope="page" />
       	<c:forEach var="num" items="${rows}">
-      		<form action="${pageContext.servletContext.contextPath}/Game" method="post">
-            	<input name="6${count7}" type="Submit" value="6${count7}">
+      		<form action="${pageContext.servletContext.contextPath}/Game" method="post" class="space">
+            	 <c:if test = "${count7 % 2 == 0}">
+            	<input name="6${count7}" type="Submit" value="6${count7}" class="white">
+                 </c:if>
+                  <c:if test = "${count7 % 2 != 0}">
+            	<input name="6${count7}" type="Submit" value= "6${count7}" class="black">
+                 </c:if>
         	</form>
         	<c:set var="count7" value="${count7 + 1}" scope="page"/>
       	</c:forEach>
       	
       	<c:set var="count8" value="0" scope="page" />
       	<c:forEach var="num" items="${rows}">
-      		<form action="${pageContext.servletContext.contextPath}/Game" method="post">
-            	<input name="7${count8}" type="Submit" value="7${count8}">
+      		<form action="${pageContext.servletContext.contextPath}/Game" method="post" class="space">
+            		 <c:if test = "${count8 % 2 == 0}">
+            	<input name="7${count8}" type="Submit" value="7${count8}" class="black">
+                 </c:if>
+                  <c:if test = "${count8 % 2 != 0}">
+            	<input name="7${count8}" type="Submit" value= "7${count8}" class="white">
+                 </c:if>
         	</form>
         	<c:set var="count8" value="${count8 + 1}" scope="page"/>
       	</c:forEach>
+            
+            </div>
+        <div class = "input">
       	
       	<form action="${pageContext.servletContext.contextPath}/Game" method="get">
             <input name="endTurn" type="Submit" value="End Turn">
@@ -392,6 +437,7 @@
         <form action="http://www.uschess.org/index.php/Learn-About-Chess/Learn-to-Play-Chess.html">
             <input type="submit" value="Learn to Play" />
         </form>
+              </div>
       	
 	</body>
 </html>
