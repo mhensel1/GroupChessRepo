@@ -69,5 +69,5 @@ public abstract class ChessPiece {
 	}
 	
   
-    public abstract boolean validateMove(int x, int y);
+    public abstract boolean validateMove(int gameId, int x, int y);
 }

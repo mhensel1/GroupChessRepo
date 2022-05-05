@@ -10,9 +10,9 @@ public class Queen extends ChessPiece {
     }
   
     @Override
-    public boolean validateMove(int x, int y) {
+    public boolean validateMove(int x, int y, int gameId) {
         Bishop b = new Bishop(super.getColor(), super.getCaptured(), super.getHasMoved(), super.getX(), super.getY());
         Rook r = new Rook(super.getColor(), super.getCaptured(), super.getHasMoved(), super.getX(), super.getY());
-    	return(b.validateMove(x, y)|| r.validateMove(x, y));
+    	return(b.validateMove(x, y, gameId)|| r.validateMove(x, y, gameId));
      }
 }

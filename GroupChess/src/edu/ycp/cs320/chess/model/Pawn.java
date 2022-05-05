@@ -8,22 +8,22 @@ public class Pawn extends ChessPiece {
     }
   
     @Override
-    public boolean validateMove(int x, int y) {
+    public boolean validateMove(int gameId, int x, int y) {
     	
     	int deltaX = Math.abs(super.getX() - x);
     	int deltaY = super.getY() - y;
     	
     	if(super.getColor()) {
     		if(deltaY == -1 /*query xy*/) {
-    			if(deltaX == 1 && !super.getDb().findPieceByColorAndXY(!super.getColor(), x, y).isEmpty()) {
+    			if(deltaX == 1 && !super.getDb().findPieceByColorAndXY(!super.getColor(), x, y, gameId).isEmpty()) {
     				return true;
-    			}else if(deltaX == 0 && super.getDb().findPieceByXY(x, y).isEmpty()) {
+    			}else if(deltaX == 0 && super.getDb().findPieceByXY(x, y, gameId).isEmpty()) {
     				return true;
     			}else {
     				return false;
     			}
     		}else if(deltaY == -2) {
-    			if(deltaX == 0 && !super.getHasMoved() && super.getDb().findPieceByXY(x, y).isEmpty()) {
+    			if(deltaX == 0 && !super.getHasMoved() && super.getDb().findPieceByXY(x, y, gameId).isEmpty()) {
     				return true;
     			}else {
     				return false;
@@ -31,7 +31,7 @@ public class Pawn extends ChessPiece {
     		}
     	}else {
     		if(deltaY == 1 /*query xy*/) {
-    			if(deltaX == 1 && !super.getDb().findPieceByColorAndXY(!super.getColor(), x, y).isEmpty()) {
+    			if(deltaX == 1 && !super.getDb().findPieceByColorAndXY(!super.getColor(), x, y, gameId).isEmpty()) {
     				return true;
     			}else if(deltaX == 0 && super.getDb().findPieceByXY(x, y).isEmpty()) {
     				return true;
@@ -39,7 +39,7 @@ public class Pawn extends ChessPiece {
     				return false;
     			}
     		}else if(deltaY == 2) {
-    			if(deltaX == 0 && !super.getHasMoved() && super.getDb().findPieceByXY(x, y).isEmpty()) {
+    			if(deltaX == 0 && !super.getHasMoved() && super.getDb().findPieceByXY(x, y, gameId).isEmpty()) {
     				return true;
     			}else {
     				return false;

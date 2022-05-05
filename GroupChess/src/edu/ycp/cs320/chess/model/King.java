@@ -11,7 +11,7 @@ public class King extends ChessPiece {
     }
   
     @Override
-    public boolean validateMove(int x, int y)
+    public boolean validateMove(int gameId, int x, int y)
     {
     	
     	int deltaX = Math.abs(super.getX() - x);
@@ -19,7 +19,7 @@ public class King extends ChessPiece {
     	
     	if(deltaX <= 1 && deltaY <= 1) {
     		//check collision here
-    		List<Piece> pieceList = super.getDb().findPieceByColorAndXY(super.getColor(), x, y);
+    		List<Piece> pieceList = super.getDb().findPieceByColorAndXY(super.getColor(), x, y, gameId);
     		if(!pieceList.isEmpty()) {
     			return false;
     		}
@@ -29,8 +29,8 @@ public class King extends ChessPiece {
     	return false;
      }
     
-    public boolean isChecked() {
-    	List<Piece> opponentPieces = super.getDb().findAllPiecesByColor(!super.getColor());
+    public boolean isChecked(int gameId) {
+    	List<Piece> opponentPieces = super.getDb().findAllPiecesByColor(!super.getColor(), gameId);
     	for(Piece currentPiece: opponentPieces) {
     		String type = currentPiece.getType();
     		ChessPiece revisedPiece = null;
@@ -56,7 +56,7 @@ public class King extends ChessPiece {
     		default:
     			System.out.println("something has gone horribly wrong, piece doesnt exist");
     		}
-    		if(revisedPiece.validateMove(super.getX(), super.getY())) {
+    		if(revisedPiece.validateMove(super.getX(), super.getY(), gameId)) {
     			return true;
     		}
     	}
