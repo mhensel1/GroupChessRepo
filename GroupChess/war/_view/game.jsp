@@ -19,6 +19,10 @@
         		font-size: 24px;
                 background-image: url(https://images3.alphacoders.com/223/thumb-1920-22319.jpg);
         	}
+        	errorMess {
+        		color: red;
+        		text-align: left;
+        	}
         input {
 				background-color: #C90000;
 				color: white;
@@ -304,8 +308,11 @@
 	</head>
     
     <body>
+    	<div id="errorMess">
+    		${error}
+    	</div>
+    	
          <div class="chessboard" id="board">
-    	${error}
       	<c:set var="count" value="0" scope="page" />
       	<c:forEach var="num" items="${rows}">
             

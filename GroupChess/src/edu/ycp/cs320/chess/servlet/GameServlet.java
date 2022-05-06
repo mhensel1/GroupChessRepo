@@ -16,12 +16,16 @@ import edu.ycp.cs320.chess.model.BoardSpace;
 import edu.ycp.cs320.chess.model.ChessBoard;
 import edu.ycp.cs320.chess.model.ChessGame;
 import edu.ycp.cs320.chess.model.ChessPiece;
-import edu.ycp.cs320.chess.model.ChessPlayer;
+import edu.ycp.cs320.chess.model.Pawn;
+import edu.ycp.cs320.chess.model.King;
+import edu.ycp.cs320.chess.model.Queen;
+import edu.ycp.cs320.chess.model.Knight;
+import edu.ycp.cs320.chess.model.Bishop;
 import edu.ycp.cs320.chess.model.Rook;
+import edu.ycp.cs320.chess.model.ChessPlayer;
 import edu.ycp.cs320.gamesDB.model.Piece;
 import edu.ycp.cs320.gamesDB.model.Game;
 import edu.ycp.cs320.gamesDB.model.User;
-import edu.ycp.cs320.chess.model.ChessPlayer;
 import javax.servlet.http.HttpSession;
 
 public class GameServlet extends HttpServlet {
@@ -85,10 +89,11 @@ public class GameServlet extends HttpServlet {
 		}
 		System.out.println("Has selected a piece " + session.getAttribute("hasSelected"));
 		String yn = (String) session.getAttribute("hasSelected");
+		System.out.println("yn =  " + yn);
 		int x = -1;
 		int y= -1;
 		
-		if (yn.equals("no")) {
+		if (yn.equals("no") || yn == "no") {
 			Piece piece = null;
 			for (Integer i =0; i<8; i++) {
 				String iString = i.toString();
@@ -102,7 +107,7 @@ public class GameServlet extends HttpServlet {
 					else {
 						x = 0;
 						y = i;
-						piece = controller.findPieceByXY(x, y);
+						piece = controller.findPieceByXY(x, y, game_id);
 						if (piece == null) {
 							errorMessage = "No Piece there";
 							System.out.println("no Piece there");
@@ -115,7 +120,7 @@ public class GameServlet extends HttpServlet {
 					}
 				}
 				
-				if(req.getParameter("1"+iString+"") != null) { //1
+				else if(req.getParameter("1"+iString+"") != null) { //1
 					String pieceName = req.getParameter("1"+iString+"");
 					if (pieceName == null || pieceName.equals("")) {
 						errorMessage = "No Piece there";
@@ -124,7 +129,7 @@ public class GameServlet extends HttpServlet {
 					else {
 						x = 1;
 						y = i;
-						piece = controller.findPieceByXY(x, y);
+						piece = controller.findPieceByXY(x, y, game_id);
 						if (piece == null) {
 							errorMessage = "No Piece there";
 							System.out.println("no Piece there");
@@ -133,11 +138,12 @@ public class GameServlet extends HttpServlet {
 							session.setAttribute("startX", x);
 							session.setAttribute("startY", y);
 							session.setAttribute("hasSelected", "yes");
+							System.out.println("You selected a piece");
 						}
 					}
 				}
 				
-				if(req.getParameter("2"+iString+"") != null) { //2
+				else if(req.getParameter("2"+iString+"") != null) { //2
 					String pieceName = req.getParameter("2"+iString+"");
 					if (pieceName == null || pieceName.equals("")) {
 						errorMessage = "No Piece there";
@@ -146,7 +152,7 @@ public class GameServlet extends HttpServlet {
 					else {
 						x = 2;
 						y = i;
-						piece = controller.findPieceByXY(x, y);
+						piece = controller.findPieceByXY(x, y, game_id);
 						if (piece == null) {
 							errorMessage = "No Piece there";
 							System.out.println("no Piece there");
@@ -159,7 +165,7 @@ public class GameServlet extends HttpServlet {
 					}
 				}
 				
-				if(req.getParameter("3"+iString+"") != null) { //3
+				else if(req.getParameter("3"+iString+"") != null) { //3
 					String pieceName = req.getParameter("3"+iString+"");
 					if (pieceName == null || pieceName.equals("")) {
 						errorMessage = "No Piece there";
@@ -168,7 +174,7 @@ public class GameServlet extends HttpServlet {
 					else {
 						x = 3;
 						y = i;
-						piece = controller.findPieceByXY(x, y);
+						piece = controller.findPieceByXY(x, y, game_id);
 						if (piece == null) {
 							errorMessage = "No Piece there";
 							System.out.println("no Piece there");
@@ -181,7 +187,7 @@ public class GameServlet extends HttpServlet {
 					}
 				}
 				
-				if(req.getParameter("4"+iString+"") != null) { //4
+				else if(req.getParameter("4"+iString+"") != null) { //4
 					String pieceName = req.getParameter("4"+iString+"");
 					if (pieceName == null || pieceName.equals("")) {
 						errorMessage = "No Piece there";
@@ -190,7 +196,7 @@ public class GameServlet extends HttpServlet {
 					else {
 						x = 4;
 						y = i;
-						piece = controller.findPieceByXY(x, y);
+						piece = controller.findPieceByXY(x, y, game_id);
 						if (piece == null) {
 							errorMessage = "No Piece there";
 							System.out.println("no Piece there");
@@ -203,7 +209,7 @@ public class GameServlet extends HttpServlet {
 					}
 				}
 				
-				if(req.getParameter("5"+iString+"") != null) { //5
+				else if(req.getParameter("5"+iString+"") != null) { //5
 					String pieceName = req.getParameter("5"+iString+"");
 					if (pieceName == null || pieceName.equals("")) {
 						errorMessage = "No Piece there";
@@ -212,7 +218,7 @@ public class GameServlet extends HttpServlet {
 					else {
 						x = 5;
 						y = i;
-						piece = controller.findPieceByXY(x, y);
+						piece = controller.findPieceByXY(x, y, game_id);
 						if (piece == null) {
 							errorMessage = "No Piece there";
 							System.out.println("no Piece there");
@@ -225,7 +231,7 @@ public class GameServlet extends HttpServlet {
 					}
 				}
 				
-				if(req.getParameter("6"+iString+"") != null) { //6
+				else if(req.getParameter("6"+iString+"") != null) { //6
 					String pieceName = req.getParameter("6"+iString+"");
 					if (pieceName == null || pieceName.equals("")) {
 						errorMessage = "No Piece there";
@@ -234,7 +240,7 @@ public class GameServlet extends HttpServlet {
 					else {
 						x = 6;
 						y = i;
-						piece = controller.findPieceByXY(x, y);
+						piece = controller.findPieceByXY(x, y, game_id);
 						if (piece == null) {
 							errorMessage = "No Piece there";
 							System.out.println("no Piece there");
@@ -247,7 +253,7 @@ public class GameServlet extends HttpServlet {
 					}
 				}
 				
-				if(req.getParameter("7"+iString+"") != null) { //7
+				else if(req.getParameter("7"+iString+"") != null) { //7
 					String pieceName = req.getParameter("7"+iString+"");
 					if (pieceName == null || pieceName.equals("")) {
 						errorMessage = "No Piece there";
@@ -256,7 +262,7 @@ public class GameServlet extends HttpServlet {
 					else {
 						x = 7;
 						y = i;
-						piece = controller.findPieceByXY(x, y);
+						piece = controller.findPieceByXY(x, y, game_id);
 						if (piece == null) {
 							errorMessage = "No Piece there";
 							System.out.println("no Piece there");
@@ -271,12 +277,22 @@ public class GameServlet extends HttpServlet {
 				
 				
 			}
+			Piece selected = controller.findPieceByXY(x, y, game_id);
+			if (selected != null) {
+				System.out.println(selected.getType() + " ("+selected.getPosX()+selected.getPosY()+")");
+			}
 		}
-		else if (yn.equals("yes")) {
+		
+		else if (yn.equals("yes") || yn == "yes") {
 			int oldX = (Integer) session.getAttribute("startX"); 
 			int oldY = (Integer) session.getAttribute("startY"); 
+			
+			Piece selected = controller.findPieceByXY(oldX, oldY, game_id);
+			System.out.println(selected.getType() + " ("+selected.getPosX()+selected.getPosY()+")");
+			
 			Piece piece = null;
 			Piece otherpiece = null;
+			Piece currentP = null;
 			for (Integer i =0; i<8; i++) {
 				String iString = i.toString();
 				if(req.getParameter("0"+iString+"") != null) { //0
@@ -284,424 +300,330 @@ public class GameServlet extends HttpServlet {
 					System.out.println("Coords: " +pieceName);
 					x = 0;
 					y = i;
-					piece = controller.findPieceByXY(x, y);
+					currentP = controller.findPieceByXY(oldX,  oldY,  game_id);
+					ChessPiece chessP = controller.convertPiece(currentP);
+					/*
+					int temp = chessP.getX();
+					chessP.setX(chessP.getY());//flipping of x and y
+					chessP.setY(temp);
+					*/
+					System.out.println("chessP data: "+chessP);
+					piece = controller.findPieceByXY(x, y, game_id);
 					if (piece == null) {
-						boolean good = controller.checkMove();
+						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
 							controller.move(oldX, oldY, x, y, false, true, game_id);
+							System.out.println("Piece moved");
 							session.setAttribute("hasSelected", "no");
 						} else {
 							errorMessage = "cant move there!";
+							System.out.println("Cant move there!");
 							session.setAttribute("hasSelected", "yes");
 						}
 					}
 					else {
 						//theres a piece to capture
-						boolean good = controller.checkMove();
+						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
-							otherpiece = controller.findPieceByXY(0, i);  //doesnt move just sets capture to true
-							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), otherpiece.getPosX(), otherpiece.getPosY(), true, true, game_id);
+							otherpiece = controller.findPieceByXY(0, i, game_id);  //doesnt move just sets capture to true // captured pieces go to 88
+							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), 8, 8, true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
+							System.out.println("Piece moved");
 							session.setAttribute("hasSelected", "no");
 						} else {
 							errorMessage = "cant move there!";
+							System.out.println("Cant move there!");
 							session.setAttribute("hasSelected", "yes");
 						}
 					}
 				}
 				
-				if(req.getParameter("1"+iString+"") != null) { //1
+				else if(req.getParameter("1"+iString+"") != null) { //1
 					String pieceName = req.getParameter("1"+iString+"");
 
 					x = 1;
 					y = i;
-					piece = controller.findPieceByXY(x, y);
+					piece = controller.findPieceByXY(x, y, game_id);
+					currentP = controller.findPieceByXY(oldX,  oldY,  game_id);
+					ChessPiece chessP = controller.convertPiece(currentP);
+					/*
+					int temp = chessP.getX();
+					chessP.setX(chessP.getY());//flipping of x and y
+					chessP.setY(temp);
+					*/
+					System.out.println("chessP data: "+chessP);
 					if (piece == null) {
-						boolean good = controller.checkMove();
+	
+						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
 							errorMessage = "cant move there!";
+							System.out.println("Cant move there!");
 							session.setAttribute("hasSelected", "yes");
 						}
 					}
 					else {
 						//theres a piece to capture
-						boolean good = controller.checkMove();
+						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
-							otherpiece = controller.findPieceByXY(1, i);  //doesnt move just sets capture to true
+							otherpiece = controller.findPieceByXY(1, i, game_id);  //doesnt move just sets capture to true
 							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), otherpiece.getPosX(), otherpiece.getPosY(), true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
 							errorMessage = "cant move there!";
+							System.out.println("Cant move there!");
 							session.setAttribute("hasSelected", "yes");
 						}
 					}
 				}
 				
-				if(req.getParameter("2"+iString+"") != null) { //2
+				else if(req.getParameter("2"+iString+"") != null) { //2
 					String pieceName = req.getParameter("2"+iString+"");
-
+					currentP = controller.findPieceByXY(oldX,  oldY,  game_id);
+					ChessPiece chessP = controller.convertPiece(currentP);
+					/*
+					int temp = chessP.getX();
+					chessP.setX(chessP.getY());//flipping of x and y
+					chessP.setY(temp);
+					*/
+					System.out.println("chessP data: "+chessP);
 					x = 2;
 					y = i;
-					piece = controller.findPieceByXY(x, y);
+					piece = controller.findPieceByXY(x, y, game_id);
 					if (piece == null) {
-						boolean good = controller.checkMove();
+						boolean good =  controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
 							errorMessage = "cant move there!";
+							System.out.println("Cant move there!");
 							session.setAttribute("hasSelected", "yes");
 						}
 					}
 					else {
 						//theres a piece to capture
-						boolean good = controller.checkMove();
+						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
-							otherpiece = controller.findPieceByXY(2, i);  //doesnt move just sets capture to true
+							otherpiece = controller.findPieceByXY(2, i, game_id);  //doesnt move just sets capture to true
 							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), otherpiece.getPosX(), otherpiece.getPosY(), true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
 							errorMessage = "cant move there!";
+							System.out.println("Cant move there!");
 							session.setAttribute("hasSelected", "yes");
 						}
 					}
 				}
 				
-				if(req.getParameter("3"+iString+"") != null) { //3
+				else if(req.getParameter("3"+iString+"") != null) { //3
 					String pieceName = req.getParameter("3"+iString+"");
-
+					currentP = controller.findPieceByXY(oldX,  oldY,  game_id);
+					ChessPiece chessP = controller.convertPiece(currentP);
+					/*
+					int temp = chessP.getX();
+					chessP.setX(chessP.getY());//flipping of x and y
+					chessP.setY(temp);
+					*/
+					System.out.println("chessP data: "+chessP);
 					x = 3;
 					y = i;
-					piece = controller.findPieceByXY(x, y);
+					piece = controller.findPieceByXY(x, y, game_id);
 					if (piece == null) {
-						boolean good = controller.checkMove();
+						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
 							errorMessage = "cant move there!";
+							System.out.println("Cant move there!");
 							session.setAttribute("hasSelected", "yes");
 						}
 					}
 					else {
 						//theres a piece to capture
-						boolean good = controller.checkMove();
+						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
-							otherpiece = controller.findPieceByXY(3, i);  //doesnt move just sets capture to true
+							otherpiece = controller.findPieceByXY(3, i, game_id);  //doesnt move just sets capture to true
 							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), otherpiece.getPosX(), otherpiece.getPosY(), true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
 							errorMessage = "cant move there!";
+							System.out.println("Cant move there!");
 							session.setAttribute("hasSelected", "yes");
 						}
 					}
 				}
 				
-				if(req.getParameter("4"+iString+"") != null) { //4
+				else if(req.getParameter("4"+iString+"") != null) { //4
 					String pieceName = req.getParameter("4"+iString+"");
-
+					currentP = controller.findPieceByXY(oldX,  oldY,  game_id);
+					ChessPiece chessP = controller.convertPiece(currentP);
+					/*
+					int temp = chessP.getX();
+					chessP.setX(chessP.getY());//flipping of x and y
+					chessP.setY(temp);
+					*/
+					System.out.println("chessP data: "+chessP);
 					x = 4;
 					y = i;
-					piece = controller.findPieceByXY(x, y);
+					piece = controller.findPieceByXY(x, y, game_id);
 					if (piece == null) {
-						boolean good = controller.checkMove();
+						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
 							errorMessage = "cant move there!";
+							System.out.println("Cant move there!");
 							session.setAttribute("hasSelected", "yes");
 						}
 					}
 					else {
 						//theres a piece to capture
-						boolean good = controller.checkMove();
+						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
-							otherpiece = controller.findPieceByXY(4, i);  //doesnt move just sets capture to true
+							otherpiece = controller.findPieceByXY(4, i, game_id);  //doesnt move just sets capture to true
 							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), otherpiece.getPosX(), otherpiece.getPosY(), true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
 							errorMessage = "cant move there!";
+							System.out.println("Cant move there!");
 							session.setAttribute("hasSelected", "yes");
 						}
 					}
 				}
 				
-				if(req.getParameter("5"+iString+"") != null) { //5
+				else if(req.getParameter("5"+iString+"") != null) { //5
 					String pieceName = req.getParameter("5"+iString+"");
-
+					currentP = controller.findPieceByXY(oldX,  oldY,  game_id);
+					ChessPiece chessP = controller.convertPiece(currentP);
+					/*
+					int temp = chessP.getX();
+					chessP.setX(chessP.getY());//flipping of x and y
+					chessP.setY(temp);
+					*/
+					System.out.println("chessP data: "+chessP);
 					x = 5;
 					y = i;
-					piece = controller.findPieceByXY(x, y);
+					piece = controller.findPieceByXY(x, y, game_id);
 					if (piece == null) {
-						boolean good = controller.checkMove();
+						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
 							errorMessage = "cant move there!";
+							System.out.println("Cant move there!");
 							session.setAttribute("hasSelected", "yes");
 						}
 					}
 					else {
 						//theres a piece to capture
-						boolean good = controller.checkMove();
+						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
-							otherpiece = controller.findPieceByXY(5, i);  //doesnt move just sets capture to true
+							otherpiece = controller.findPieceByXY(5, i, game_id);  //doesnt move just sets capture to true
 							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), otherpiece.getPosX(), otherpiece.getPosY(), true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
 							errorMessage = "cant move there!";
+							System.out.println("Cant move there!");
 							session.setAttribute("hasSelected", "yes");
 						}
 					}
 				}
 				
-				if(req.getParameter("6"+iString+"") != null) { //6
+				else if(req.getParameter("6"+iString+"") != null) { //6
 					String pieceName = req.getParameter("6"+iString+"");
-
+					currentP = controller.findPieceByXY(oldX,  oldY,  game_id);
+					ChessPiece chessP = controller.convertPiece(currentP);
+					/*
+					int temp = chessP.getX();
+					chessP.setX(chessP.getY());//flipping of x and y
+					chessP.setY(temp);
+					*/
+					System.out.println("chessP data: "+chessP);
 					x = 6;
 					y = i;
-					piece = controller.findPieceByXY(x, y);
+					piece = controller.findPieceByXY(x, y, game_id);
 					if (piece == null) {
-						boolean good = controller.checkMove();
+						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
 							errorMessage = "cant move there!";
+							System.out.println("Cant move there!");
 							session.setAttribute("hasSelected", "yes");
 						}
 					}
 					else {
 						//theres a piece to capture
-						boolean good = controller.checkMove();
+						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
-							otherpiece = controller.findPieceByXY(6, i);  //doesnt move just sets capture to true
+							otherpiece = controller.findPieceByXY(6, i, game_id);  //doesnt move just sets capture to true
 							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), otherpiece.getPosX(), otherpiece.getPosY(), true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
 							errorMessage = "cant move there!";
+							System.out.println("Cant move there!");
 							session.setAttribute("hasSelected", "yes");
 						}
 					}
 				}
 				
-				if(req.getParameter("7"+iString+"") != null) { //7
+				else if(req.getParameter("7"+iString+"") != null) { //7
 					String pieceName = req.getParameter("7"+iString+"");
-
+					currentP = controller.findPieceByXY(oldX,  oldY,  game_id);
+					ChessPiece chessP = controller.convertPiece(currentP);
+					/*
+					int temp = chessP.getX();
+					chessP.setX(chessP.getY());//flipping of x and y
+					chessP.setY(temp);
+					*/
+					System.out.println("chessP data: "+chessP);
 					x = 7;
 					y = i;
-					piece = controller.findPieceByXY(x, y);
+					piece = controller.findPieceByXY(x, y, game_id);
 					if (piece == null) {
-						boolean good = controller.checkMove();
+						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
 							errorMessage = "cant move there!";
+							System.out.println("Cant move there!");
 							session.setAttribute("hasSelected", "yes");
 						}
 					}
 					else {
 						//theres a piece to capture
-						boolean good = controller.checkMove();
+						boolean good = controller.checkMove(chessP, x, y, game_id); //previously was oldx and oldy
 						if (good == true) {
-							otherpiece = controller.findPieceByXY(7, i);  //doesnt move just sets capture to true
+							otherpiece = controller.findPieceByXY(7, i, game_id);  //doesnt move just sets capture to true
 							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), otherpiece.getPosX(), otherpiece.getPosY(), true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
 							errorMessage = "cant move there!";
+							System.out.println("Cant move there!");
 							session.setAttribute("hasSelected", "yes");
 						}
 					}
 				}
 				
 			}
-			
 		}
 		
-		/*if(yn.equals("no")) {	
-				if (req.getParameter("a7") != null) {
-					controller.setstart(0, 0);
-				}
-				else if (req.getParameter("b7") != null) {
-					controller.setstart(0, 1);
-				}
-				else if (req.getParameter("c7") != null) {
-					controller.setstart(0, 2);
-				}
-				else if (req.getParameter("d7") != null) {
-					controller.setstart(0, 3);
-				}
-				else if (req.getParameter("e7") != null) {
-					controller.setstart(0, 4);
-				}
-				else if (req.getParameter("f7") != null) {
-					controller.setstart(0, 5);
-				}
-				else if (req.getParameter("g7") != null) {
-					controller.setstart(0, 6);
-				}
-				else if (req.getParameter("h7") != null) {
-					controller.setstart(0, 7);
-					
-				}else if (req.getParameter("a6") != null) {
-					controller.setstart(1, 0);
-				}
-				else if (req.getParameter("b6") != null) {
-					controller.setstart(1, 1);
-				}
-				else if (req.getParameter("c7") != null) {
-					controller.setstart(1, 2);
-				}
-				else if (req.getParameter("d6") != null) {
-					controller.setstart(1, 3);
-				}
-				else if (req.getParameter("e6") != null) {
-					controller.setstart(1, 4);
-				}
-				else if (req.getParameter("f6") != null) {
-					controller.setstart(1, 5);
-				}
-				else if (req.getParameter("g6") != null) {
-					controller.setstart(1, 6);
-				}
-				else if (req.getParameter("h6") != null) {
-					controller.setstart(1, 7);
-					
-				}else if (req.getParameter("a5") != null) {
-					controller.setstart(2, 0);
-				}
-				else if (req.getParameter("b5") != null) {
-					controller.setstart(2, 1);
-				}
-				else if (req.getParameter("c5") != null) {
-					controller.setstart(2, 2);
-				}
-				else if (req.getParameter("d5") != null) {
-					controller.setstart(2, 3);
-				}
-				else if (req.getParameter("e5") != null) {
-					controller.setstart(2, 4);
-				}
-				else if (req.getParameter("f5") != null) {
-					controller.setstart(2, 5);
-				}
-				else if (req.getParameter("g5") != null) {
-					controller.setstart(2, 6);
-				}
-				else if (req.getParameter("h5") != null) {
-					controller.setstart(2, 7);
-				}
-				else {
-				session.setAttribute("hasSelected", "no");
-				}
-				session.setAttribute("hasSelected", "yes");
-				
-				System.out.println(controller.getstart());
-				//System.out.println(session.getAttribute("hasSelected"));
-		}
-		
-		if(yn.equals("yes")){
-			if (req.getParameter("a8") != null) {
-				controller.setdestination(0, 0);
-			}
-			
-			else if (req.getParameter("b8") != null) {
-				controller.setdestination(0, 1);
-			}
-			else if (req.getParameter("c8") != null) {
-				controller.setdestination(0, 2);
-			}
-			else if (req.getParameter("d8") != null) {
-				controller.setdestination(0, 3);
-			}
-			else if (req.getParameter("e8") != null) {
-				controller.setdestination(0, 4);
-			}
-			else if (req.getParameter("f8") != null) {
-				controller.setdestination(0, 5);
-			}
-			else if (req.getParameter("g8") != null) {
-				controller.setdestination(0, 6);
-			}
-			else if (req.getParameter("h8") != null) {
-				controller.setdestination(0, 7);
-				
-			}else if (req.getParameter("a7") != null) {
-				controller.setdestination(1, 0);
-			}
-			else if (req.getParameter("b7") != null) {
-				controller.setdestination(1, 1);
-			}
-			else if (req.getParameter("c7") != null) {
-				controller.setdestination(1, 2);
-			}
-			else if (req.getParameter("d7") != null) {
-				controller.setdestination(1, 3);
-			}
-			else if (req.getParameter("e7") != null) {
-				controller.setdestination(1, 4);
-			}
-			else if (req.getParameter("f7") != null) {
-				controller.setdestination(1, 5);
-			}
-			else if (req.getParameter("g7") != null) {
-				controller.setdestination(1, 6);
-			}
-			else if (req.getParameter("h7") != null) {
-				controller.setdestination(1, 7);
-				
-			}else if (req.getParameter("a6") != null) {
-				controller.setdestination(2, 0);
-			}
-			else if (req.getParameter("b6") != null) {
-				controller.setdestination(2, 1);
-			}
-			else if (req.getParameter("c6") != null) {
-				controller.setdestination(2, 2);
-			}
-			else if (req.getParameter("d6") != null) {
-				controller.setdestination(2, 3);
-			}
-			else if (req.getParameter("e6") != null) {
-				controller.setdestination(2, 4);
-			}
-			else if (req.getParameter("f6") != null) {
-				controller.setdestination(2, 5);
-			}
-			else if (req.getParameter("g6") != null) {
-				controller.setdestination(2, 6);
-			}
-			else if (req.getParameter("h6") != null) {
-				controller.setdestination(2, 7);
-			}
-			
-			System.out.println("Selected Space at : ");
-			//System.out.println(controller.getstart());
-			System.out.println("Row " + controller.getDest().getX());
-			System.out.println("Col " + controller.getDest().getY());
-			
-			//controller.move();
-			
-			//System.out.println("Piece Moved");
-			//System.out.println("updated Destination space " + controller.getDest().getPiece());
-			//System.out.println("updated start space " + null);
-			
-			session.setAttribute("hasSelected", "no");
-		}*/
-		
+		System.out.println("yn at end of post: " + yn);
 		if (req.getParameter("endTurn") != null) {
 			
 		} else if (req.getParameter("saveGame") != null) {

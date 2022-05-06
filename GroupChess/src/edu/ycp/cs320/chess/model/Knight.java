@@ -15,7 +15,7 @@ public class Knight extends ChessPiece{
 		int deltaX = Math.abs(super.getX() - x);
 		int deltaY = Math.abs(super.getY() - y);
 		
-		if((deltaX == 2 && deltaY == 1) || (deltaY == 2 && deltaX == 1)) {
+		if((deltaY == 2 && deltaX == 1) || (deltaX == 2 && deltaY == 1)) {
 			//check collision here
 			if(!super.getDb().findPieceByColorAndXY(super.getColor(), x, y, gameId).isEmpty()) {
 				return false;

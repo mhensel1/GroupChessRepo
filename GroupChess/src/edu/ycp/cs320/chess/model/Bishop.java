@@ -20,35 +20,35 @@ public class Bishop extends ChessPiece {
     	int oldY = super.getY();
     	int deltaX = Math.abs(oldX - x);
     	int deltaY = Math.abs(oldY - y);
-    	if (deltaX == deltaY && deltaX != 0) {
+    	if (deltaX == deltaY && deltaY != 0) {
     		//add collision check here
     		if(!super.getDb().findPieceByColorAndXY(super.getColor(), x, y, gameId).isEmpty()) {
     			return false;
     		}
-    		if(x - oldX < 0 && y - oldY < 0 ) {
-    			for (int i = 0; i != deltaX ;i++) {
+    		if(y - oldY < 0 && x - oldX < 0 ) {
+    			for (int i = 0; i != deltaY ;i++) {
     				List<Piece> pieceList = super.getDb().findPieceByXY(x+i, y+i, gameId);
     				if(!pieceList.isEmpty()) {
     					return false;
     				}
     			}
-    		}else if(x - oldX < 0 && y - oldY > 0) {
-    			for (int i = 0; i != deltaX ;i++) {
+    		}else if(y - oldY < 0 && x - oldX > 0) {
+    			for (int i = 0; i != deltaY ;i++) {
     				List<Piece> pieceList = super.getDb().findPieceByXY(x+i, y-i, gameId);
     				if(!pieceList.isEmpty()) {
     					return false;
     				}
     			}
-    		}else if(x - oldX > 0 && y - oldY < 0) {
-    			for (int i = 0; i != deltaX ;i++) {
+    		}else if(y - oldY > 0 && x - oldX < 0) {
+    			for (int i = 0; i != deltaY ;i++) {
     				List<Piece> pieceList = super.getDb().findPieceByXY(x-i, y+i, gameId);
     				if(!pieceList.isEmpty()) {
     					return false;
     				}
     			}
     			return true;
-    		}else if(x - oldX > 0 && y - oldY > 0) {
-    			for (int i = 0; i != deltaX ;i++) {
+    		}else if(y - oldY > 0 && x - oldX > 0) {
+    			for (int i = 0; i != deltaY ;i++) {
     				List<Piece> pieceList = super.getDb().findPieceByXY(x-i, y-i, gameId);
     				if(!pieceList.isEmpty()) {
     					return false;

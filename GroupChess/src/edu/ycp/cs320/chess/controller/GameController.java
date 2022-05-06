@@ -2,13 +2,20 @@ package edu.ycp.cs320.chess.controller;
 
 import edu.ycp.cs320.chess.model.ChessGame;
 import edu.ycp.cs320.chess.model.ChessPiece;
+import edu.ycp.cs320.chess.model.King;
+import edu.ycp.cs320.chess.model.Knight;
+import edu.ycp.cs320.chess.model.Pawn;
+import edu.ycp.cs320.chess.model.Queen;
+import edu.ycp.cs320.chess.model.Rook;
 import edu.ycp.cs320.gamesDB.persist.DatabaseProvider;
 import edu.ycp.cs320.gamesDB.persist.DerbyDatabase;
 import edu.ycp.cs320.gamesDB.persist.IDatabase;
+import edu.ycp.cs320.chess.model.Bishop;
 import edu.ycp.cs320.chess.model.BoardSpace;
 import edu.ycp.cs320.chess.model.ChessBoard;
 import edu.ycp.cs320.gamesDB.model.Pair;
 import edu.ycp.cs320.gamesDB.model.Game;
+import edu.ycp.cs320.gamesDB.model.User;
 import java.util.List;
 import java.util.ArrayList;
 import edu.ycp.cs320.gamesDB.model.Piece;
@@ -45,16 +52,14 @@ public class GameController {
         return dest;
     }
 	
-    public boolean checkMove() {
+    public boolean checkMove(ChessPiece thePiece, int x, int y, int game_id) {
     	//validate move func talk to tom
-    	return true;
+    	System.out.println("In CheckMove: X: "+ x + " Y: "+ y);
+    	boolean check = thePiece.validateMove(game_id,  x,  y);
+    	return check;
     }
     
 	public void move(int oldX, int oldY, int newX, int newY, boolean capture, boolean hasMoved, int game_id) {
-		/*dest.setPiece(start.getPiece());
-		System.out.println(dest.getPiece());
-		System.out.println(start.getPiece());
-		start.setPiece(null);*/
 		
 		Pair<Integer, Integer> newCoords = db.updatePieceInfoByCoords(oldX, oldY, newX, newY, capture, hasMoved, game_id);
 	}
@@ -75,8 +80,8 @@ public class GameController {
 		System.out.println("Game controller create board");
 	}
 	
-	public Piece findPieceByXY(int x, int y) {
-		List<Piece> pieces = db.findPieceByXY(x, y);
+	public Piece findPieceByXY(int x, int y, int game_id) {
+		List<Piece> pieces = db.findPieceByXY(x, y, game_id);
 		Piece thePiece = null;
 		for (Piece piece : pieces) {
 			thePiece = piece;
@@ -98,8 +103,57 @@ public class GameController {
 		return gameRet;
 	}
 	
-	public void gameOver(int game_id, int user_id) {
+	public void gameOver(int game_id, int user_id, int opp_id, boolean winner) {
+		if (winner == true) {
+			List<Pair<User, Game>> gameUsers = db.findUserAndGameByID(game_id);
+			User theUser = null;
+			for (Pair<User, Game> gameUser : gameUsers) {
+				theUser = gameUser.getLeft();
+			}
+			String username = theUser.getUsername();
+			db.updateStatsByUser(username, theUser.getWins()+1, theUser.getLosses());
+			//lower opp stats
+		}
+		else if (winner == false) {
+			List<Pair<User, Game>> gameUsers = db.findUserAndGameByID(game_id);
+			User theUser = null;
+			for (Pair<User, Game> gameUser : gameUsers) {
+				theUser = gameUser.getLeft();
+			}
+			String username = theUser.getUsername();
+			db.updateStatsByUser(username, theUser.getWins(), theUser.getLosses()-1);
+			//up opp stats
+		}
 		db.revertOppId(game_id);
+	}
+	
+	public ChessPiece convertPiece(Piece currentPiece) {
+    		String type = currentPiece.getType();
+    		ChessPiece revisedPiece = null;
+    		switch(type) {
+    		case "pawn":
+    			revisedPiece = new Pawn(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosX(), currentPiece.getPosY());
+    			break;
+    		case "knight":
+    			revisedPiece = new Knight(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosX(), currentPiece.getPosY());
+    			break;
+    		case "rook":
+    			revisedPiece = new Rook(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosX(), currentPiece.getPosY());
+    			break;
+    		case "bishop":
+    			revisedPiece = new Bishop(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosX(), currentPiece.getPosY());
+    			break;
+    		case "queen":
+    			revisedPiece = new Queen(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosX(), currentPiece.getPosY());
+    			break;
+    		case "king":
+    			revisedPiece = new King(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosX(), currentPiece.getPosY());
+    			break;
+    		default:
+    			System.out.println("something has gone horribly wrong, piece doesnt exist");
+    		}
+    		System.out.println("Converted Piece Info: "+ revisedPiece.getX() + revisedPiece.getY());
+    		return revisedPiece;
 	}
 
 	
