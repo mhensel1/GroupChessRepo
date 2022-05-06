@@ -56,6 +56,11 @@ public class GameController {
     	//validate move func talk to tom
     	System.out.println("In CheckMove: X: "+ x + " Y: "+ y);
     	boolean check = thePiece.validateMove(game_id,  x,  y);
+    	
+    	Piece oldKing = db.findPieceByColorAndType(thePiece.getColor(), "king", game_id).get(0);
+    	King myKing = new King(oldKing.getColor(), oldKing.getCaptured(), oldKing.getHasMoved(), oldKing.getPosX(), oldKing.getPosY());
+    	check = check && !myKing.isChecked(game_id);
+    	
     	return check;
     }
     
