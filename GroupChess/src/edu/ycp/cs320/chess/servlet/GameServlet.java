@@ -56,6 +56,7 @@ public class GameServlet extends HttpServlet {
 		session.setAttribute("hasSelected", "no");
 		session.setAttribute("startX", "non");
 		session.setAttribute("startY", "non");
+		session.setAttribute("pieces", pieces);
 		
 		req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);
 	}
