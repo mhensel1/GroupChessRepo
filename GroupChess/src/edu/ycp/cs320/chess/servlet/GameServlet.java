@@ -370,7 +370,7 @@ public class GameServlet extends HttpServlet {
 						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
 							otherpiece = controller.findPieceByXY(1, i, game_id);  //doesnt move just sets capture to true
-							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), otherpiece.getPosX(), otherpiece.getPosY(), true, true, game_id);
+							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), 8,8, true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
@@ -410,7 +410,7 @@ public class GameServlet extends HttpServlet {
 						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
 							otherpiece = controller.findPieceByXY(2, i, game_id);  //doesnt move just sets capture to true
-							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), otherpiece.getPosX(), otherpiece.getPosY(), true, true, game_id);
+							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), 8,8, true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
@@ -450,7 +450,7 @@ public class GameServlet extends HttpServlet {
 						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
 							otherpiece = controller.findPieceByXY(3, i, game_id);  //doesnt move just sets capture to true
-							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), otherpiece.getPosX(), otherpiece.getPosY(), true, true, game_id);
+							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), 8,8, true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
@@ -490,7 +490,7 @@ public class GameServlet extends HttpServlet {
 						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
 							otherpiece = controller.findPieceByXY(4, i, game_id);  //doesnt move just sets capture to true
-							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), otherpiece.getPosX(), otherpiece.getPosY(), true, true, game_id);
+							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), 8,8, true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
@@ -530,7 +530,7 @@ public class GameServlet extends HttpServlet {
 						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
 							otherpiece = controller.findPieceByXY(5, i, game_id);  //doesnt move just sets capture to true
-							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), otherpiece.getPosX(), otherpiece.getPosY(), true, true, game_id);
+							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), 8,8, true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
@@ -570,7 +570,7 @@ public class GameServlet extends HttpServlet {
 						boolean good = controller.checkMove(chessP, x, y, game_id);
 						if (good == true) {
 							otherpiece = controller.findPieceByXY(6, i, game_id);  //doesnt move just sets capture to true
-							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), otherpiece.getPosX(), otherpiece.getPosY(), true, true, game_id);
+							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), 8,8, true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
@@ -610,7 +610,7 @@ public class GameServlet extends HttpServlet {
 						boolean good = controller.checkMove(chessP, x, y, game_id); //previously was oldx and oldy
 						if (good == true) {
 							otherpiece = controller.findPieceByXY(7, i, game_id);  //doesnt move just sets capture to true
-							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), otherpiece.getPosX(), otherpiece.getPosY(), true, true, game_id);
+							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), 8,8, true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
 						} else {
