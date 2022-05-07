@@ -58,6 +58,10 @@ public class GameServlet extends HttpServlet {
 		session.setAttribute("startY", "non");
 		session.setAttribute("pieces", pieces);
 		
+		String turnS = game.getTurns();
+		int turn = Integer.parseInt(turnS);
+		session.setAttribute("turns", turn);
+		
 		req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);
 	}
 	
@@ -67,6 +71,7 @@ public class GameServlet extends HttpServlet {
 		
 		System.out.println("ChessGame Servlet: doPost");
 		String errorMessage = null;
+		
 		
 		HttpSession session = req.getSession();
 		ChessBoard board = new ChessBoard();
@@ -79,6 +84,10 @@ public class GameServlet extends HttpServlet {
 		int user_id = menuController.findUserIdByUsername(username);
 		Game game = controller.loadGame(user_id, game_id);
 		List<Piece> pieces = controller.getPiecesByGameID(game_id);
+		
+		String turnString = game.getTurns();
+		int turns = Integer.parseInt(turnString);
+		System.out.println("Turn #: " + turns);
 		//StatsController statController = new StatsController();
 		
 		// assign model reference to controller so that controller can access model
@@ -113,6 +122,14 @@ public class GameServlet extends HttpServlet {
 							errorMessage = "No Piece there";
 							System.out.println("no Piece there");
 						}
+						else if (turns % 2 == 0 && piece.getColor() != true) {
+							errorMessage = "Wrong Color";
+							System.out.println("Wrong color");
+						}
+						else if (turns % 2 == 1 && piece.getColor() != false) {
+							errorMessage = "Wrong Color";
+							System.out.println("Wrong color");
+						}
 						else {
 							session.setAttribute("startX", x);
 							session.setAttribute("startY", y);
@@ -134,6 +151,14 @@ public class GameServlet extends HttpServlet {
 						if (piece == null) {
 							errorMessage = "No Piece there";
 							System.out.println("no Piece there");
+						}
+						else if (turns % 2 == 0 && piece.getColor() != true) {
+							errorMessage = "Wrong Color";
+							System.out.println("Wrong color");
+						}
+						else if (turns % 2 == 1 && piece.getColor() != false) {
+							errorMessage = "Wrong Color";
+							System.out.println("Wrong color");
 						}
 						else {
 							session.setAttribute("startX", x);
@@ -158,6 +183,14 @@ public class GameServlet extends HttpServlet {
 							errorMessage = "No Piece there";
 							System.out.println("no Piece there");
 						}
+						else if (turns % 2 == 0 && piece.getColor() != true) {
+							errorMessage = "Wrong Color";
+							System.out.println("Wrong color");
+						}
+						else if (turns % 2 == 1 && piece.getColor() != false) {
+							errorMessage = "Wrong Color";
+							System.out.println("Wrong color");
+						}
 						else {
 							session.setAttribute("startX", x);
 							session.setAttribute("startY", y);
@@ -179,6 +212,14 @@ public class GameServlet extends HttpServlet {
 						if (piece == null) {
 							errorMessage = "No Piece there";
 							System.out.println("no Piece there");
+						}
+						else if (turns % 2 == 0 && piece.getColor() != true) {
+							errorMessage = "Wrong Color";
+							System.out.println("Wrong color");
+						}
+						else if (turns % 2 == 1 && piece.getColor() != false) {
+							errorMessage = "Wrong Color";
+							System.out.println("Wrong color");
 						}
 						else {
 							session.setAttribute("startX", x);
@@ -202,6 +243,14 @@ public class GameServlet extends HttpServlet {
 							errorMessage = "No Piece there";
 							System.out.println("no Piece there");
 						}
+						else if (turns % 2 == 0 && piece.getColor() != true) {
+							errorMessage = "Wrong Color";
+							System.out.println("Wrong color");
+						}
+						else if (turns % 2 == 1 && piece.getColor() != false) {
+							errorMessage = "Wrong Color";
+							System.out.println("Wrong color");
+						}
 						else {
 							session.setAttribute("startX", x);
 							session.setAttribute("startY", y);
@@ -223,6 +272,14 @@ public class GameServlet extends HttpServlet {
 						if (piece == null) {
 							errorMessage = "No Piece there";
 							System.out.println("no Piece there");
+						}
+						else if (turns % 2 == 0 && piece.getColor() != true) {
+							errorMessage = "Wrong Color";
+							System.out.println("Wrong color");
+						}
+						else if (turns % 2 == 1 && piece.getColor() != false) {
+							errorMessage = "Wrong Color";
+							System.out.println("Wrong color");
 						}
 						else {
 							session.setAttribute("startX", x);
@@ -246,6 +303,14 @@ public class GameServlet extends HttpServlet {
 							errorMessage = "No Piece there";
 							System.out.println("no Piece there");
 						}
+						else if (turns % 2 == 0 && piece.getColor() != true) {
+							errorMessage = "Wrong Color";
+							System.out.println("Wrong color");
+						}
+						else if (turns % 2 == 1 && piece.getColor() != false) {
+							errorMessage = "Wrong Color";
+							System.out.println("Wrong color");
+						}
 						else {
 							session.setAttribute("startX", x);
 							session.setAttribute("startY", y);
@@ -267,6 +332,14 @@ public class GameServlet extends HttpServlet {
 						if (piece == null) {
 							errorMessage = "No Piece there";
 							System.out.println("no Piece there");
+						}
+						else if (turns % 2 == 0 && piece.getColor() != true) {
+							errorMessage = "Wrong Color";
+							System.out.println("Wrong color");
+						}
+						else if (turns % 2 == 1 && piece.getColor() != false) {
+							errorMessage = "Wrong Color";
+							System.out.println("Wrong color");
 						}
 						else {
 							session.setAttribute("startX", x);
@@ -316,6 +389,10 @@ public class GameServlet extends HttpServlet {
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							System.out.println("Piece moved");
 							session.setAttribute("hasSelected", "no");
+
+							String turnS = game.getTurns();
+							int turn = Integer.parseInt(turnS);
+							controller.updateTurn(game_id, turn+1);
 						} else {
 							errorMessage = "cant move there!";
 							System.out.println("Cant move there!");
@@ -331,6 +408,10 @@ public class GameServlet extends HttpServlet {
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							System.out.println("Piece moved");
 							session.setAttribute("hasSelected", "no");
+
+							String turnS = game.getTurns();
+							int turn = Integer.parseInt(turnS);
+							controller.updateTurn(game_id, turn+1);
 						} else {
 							errorMessage = "cant move there!";
 							System.out.println("Cant move there!");
@@ -359,6 +440,10 @@ public class GameServlet extends HttpServlet {
 						if (good == true) {
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
+
+							String turnS = game.getTurns();
+							int turn = Integer.parseInt(turnS);
+							controller.updateTurn(game_id, turn+1);
 						} else {
 							errorMessage = "cant move there!";
 							System.out.println("Cant move there!");
@@ -373,6 +458,10 @@ public class GameServlet extends HttpServlet {
 							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), 8,8, true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
+
+							String turnS = game.getTurns();
+							int turn = Integer.parseInt(turnS);
+							controller.updateTurn(game_id, turn+1);
 						} else {
 							errorMessage = "cant move there!";
 							System.out.println("Cant move there!");
@@ -399,6 +488,10 @@ public class GameServlet extends HttpServlet {
 						if (good == true) {
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
+
+							String turnS = game.getTurns();
+							int turn = Integer.parseInt(turnS);
+							controller.updateTurn(game_id, turn+1);
 						} else {
 							errorMessage = "cant move there!";
 							System.out.println("Cant move there!");
@@ -413,6 +506,10 @@ public class GameServlet extends HttpServlet {
 							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), 8,8, true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
+
+							String turnS = game.getTurns();
+							int turn = Integer.parseInt(turnS);
+							controller.updateTurn(game_id, turn+1);
 						} else {
 							errorMessage = "cant move there!";
 							System.out.println("Cant move there!");
@@ -439,6 +536,10 @@ public class GameServlet extends HttpServlet {
 						if (good == true) {
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
+
+							String turnS = game.getTurns();
+							int turn = Integer.parseInt(turnS);
+							controller.updateTurn(game_id, turn+1);
 						} else {
 							errorMessage = "cant move there!";
 							System.out.println("Cant move there!");
@@ -453,6 +554,10 @@ public class GameServlet extends HttpServlet {
 							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), 8,8, true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
+
+							String turnS = game.getTurns();
+							int turn = Integer.parseInt(turnS);
+							controller.updateTurn(game_id, turn+1);
 						} else {
 							errorMessage = "cant move there!";
 							System.out.println("Cant move there!");
@@ -479,6 +584,10 @@ public class GameServlet extends HttpServlet {
 						if (good == true) {
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
+
+							String turnS = game.getTurns();
+							int turn = Integer.parseInt(turnS);
+							controller.updateTurn(game_id, turn+1);
 						} else {
 							errorMessage = "cant move there!";
 							System.out.println("Cant move there!");
@@ -493,6 +602,10 @@ public class GameServlet extends HttpServlet {
 							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), 8,8, true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
+
+							String turnS = game.getTurns();
+							int turn = Integer.parseInt(turnS);
+							controller.updateTurn(game_id, turn+1);
 						} else {
 							errorMessage = "cant move there!";
 							System.out.println("Cant move there!");
@@ -519,6 +632,10 @@ public class GameServlet extends HttpServlet {
 						if (good == true) {
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
+
+							String turnS = game.getTurns();
+							int turn = Integer.parseInt(turnS);
+							controller.updateTurn(game_id, turn+1);
 						} else {
 							errorMessage = "cant move there!";
 							System.out.println("Cant move there!");
@@ -533,6 +650,10 @@ public class GameServlet extends HttpServlet {
 							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), 8,8, true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
+
+							String turnS = game.getTurns();
+							int turn = Integer.parseInt(turnS);
+							controller.updateTurn(game_id, turn+1);
 						} else {
 							errorMessage = "cant move there!";
 							System.out.println("Cant move there!");
@@ -559,6 +680,10 @@ public class GameServlet extends HttpServlet {
 						if (good == true) {
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
+
+							String turnS = game.getTurns();
+							int turn = Integer.parseInt(turnS);
+							controller.updateTurn(game_id, turn+1);
 						} else {
 							errorMessage = "cant move there!";
 							System.out.println("Cant move there!");
@@ -573,6 +698,10 @@ public class GameServlet extends HttpServlet {
 							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), 8,8, true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
+
+							String turnS = game.getTurns();
+							int turn = Integer.parseInt(turnS);
+							controller.updateTurn(game_id, turn+1);
 						} else {
 							errorMessage = "cant move there!";
 							System.out.println("Cant move there!");
@@ -599,6 +728,10 @@ public class GameServlet extends HttpServlet {
 						if (good == true) {
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
+
+							String turnS = game.getTurns();
+							int turn = Integer.parseInt(turnS);
+							controller.updateTurn(game_id, turn+1);
 						} else {
 							errorMessage = "cant move there!";
 							System.out.println("Cant move there!");
@@ -613,6 +746,10 @@ public class GameServlet extends HttpServlet {
 							controller.move(otherpiece.getPosX(), otherpiece.getPosY(), 8,8, true, true, game_id);
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							session.setAttribute("hasSelected", "no");
+							
+							String turnS = game.getTurns();
+							int turn = Integer.parseInt(turnS);
+							controller.updateTurn(game_id, turn+1);
 						} else {
 							errorMessage = "cant move there!";
 							System.out.println("Cant move there!");
@@ -631,6 +768,9 @@ public class GameServlet extends HttpServlet {
 			
 		} else if (req.getParameter("viewHistory") != null) {
 		
+		} else if (req.getParameter("forfeit") != null) {
+			controller.gameOver(game_id, user_id, game.getOppId(), turns-1);
+			errorMessage = "Game Over!";
 		} else if (req.getParameter("exitGame") != null) {
 			
 		} else {

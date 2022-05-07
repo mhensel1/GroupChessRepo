@@ -36,22 +36,22 @@ public class King extends ChessPiece {
     		ChessPiece revisedPiece = null;
     		switch(type) {
     		case "pawn":
-    			revisedPiece = new Pawn(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosX(), currentPiece.getPosY());
+    			revisedPiece = new Pawn(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosY(), currentPiece.getPosX());
     			break;
     		case "knight":
-    			revisedPiece = new Knight(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosX(), currentPiece.getPosY());
+    			revisedPiece = new Knight(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosY(), currentPiece.getPosX());
     			break;
     		case "rook":
-    			revisedPiece = new Rook(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosX(), currentPiece.getPosY());
+    			revisedPiece = new Rook(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosY(), currentPiece.getPosX());
     			break;
     		case "bishop":
-    			revisedPiece = new Bishop(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosX(), currentPiece.getPosY());
+    			revisedPiece = new Bishop(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosY(), currentPiece.getPosX());
     			break;
     		case "queen":
-    			revisedPiece = new Queen(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosX(), currentPiece.getPosY());
+    			revisedPiece = new Queen(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosY(), currentPiece.getPosX());
     			break;
     		case "king":
-    			revisedPiece = new King(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosX(), currentPiece.getPosY());
+    			revisedPiece = new King(currentPiece.getColor(), currentPiece.getCaptured(), currentPiece.getHasMoved(), currentPiece.getPosY(), currentPiece.getPosX());
     			break;
     		default:
     			System.out.println("something has gone horribly wrong, piece doesnt exist");

@@ -57,9 +57,16 @@ public class GameController {
     	System.out.println("In CheckMove: X: "+ x + " Y: "+ y);
     	boolean check = thePiece.validateMove(game_id,  x,  y);
     	
-    	Piece oldKing = db.findPieceByColorAndType(thePiece.getColor(), "king", game_id).get(0);
+    	List<Piece> pieces = db.findPieceByColorAndType(thePiece.getColor(), "king", game_id);
+    	Piece oldKing = null;
+    	for (Piece piece : pieces) {
+    		oldKing = piece;
+    	}
+    	//Piece oldKing = db.findPieceByColorAndType(thePiece.getColor(), "king", game_id).get(0);
     	King myKing = new King(oldKing.getColor(), oldKing.getCaptured(), oldKing.getHasMoved(), oldKing.getPosX(), oldKing.getPosY());
-    	check = check && !myKing.isChecked(game_id);
+    	boolean kingCheck = myKing.isChecked(game_id);
+    	System.out.println("King Check: " + kingCheck);
+    	//check = check && !kingCheck;
     	
     	return check;
     }
@@ -108,7 +115,20 @@ public class GameController {
 		return gameRet;
 	}
 	
-	public void gameOver(int game_id, int user_id, int opp_id, boolean winner) {
+	public int updateTurn(int game_id, int turn) {
+		int newTurn = db.updateTurnInGame(game_id, turn);
+		return newTurn;
+	}
+	
+	public void gameOver(int game_id, int user_id, int opp_id, int turns) {
+		boolean winner = true;
+		if (turns % 2 == 0) {
+			winner = true;
+		}
+		else if (turns % 2 == 1) {
+			winner = false;
+		}
+		
 		if (winner == true) {
 			List<Pair<User, Game>> gameUsers = db.findUserAndGameByID(game_id);
 			User theUser = null;
@@ -117,7 +137,15 @@ public class GameController {
 			}
 			String username = theUser.getUsername();
 			db.updateStatsByUser(username, theUser.getWins()+1, theUser.getLosses());
-			//lower opp stats
+			if (opp_id != 0) {
+				List<User> usersList = db.findUserById(opp_id);
+				User opp = null;
+				for (User user : usersList) {
+					opp = user;
+				}
+				String opp_name = opp.getUsername();
+				db.updateStatsByUser(opp_name, theUser.getWins(), theUser.getLosses()+1);
+			}
 		}
 		else if (winner == false) {
 			List<Pair<User, Game>> gameUsers = db.findUserAndGameByID(game_id);
@@ -126,10 +154,19 @@ public class GameController {
 				theUser = gameUser.getLeft();
 			}
 			String username = theUser.getUsername();
-			db.updateStatsByUser(username, theUser.getWins(), theUser.getLosses()-1);
-			//up opp stats
+			db.updateStatsByUser(username, theUser.getWins(), theUser.getLosses()+1);
+			if (opp_id != 0) {
+				List<User> usersList = db.findUserById(opp_id);
+				User opp = null;
+				for (User user : usersList) {
+					opp = user;
+				}
+				String opp_name = opp.getUsername();
+				db.updateStatsByUser(opp_name, theUser.getWins()+1, theUser.getLosses());
+			}
 		}
 		db.revertOppId(game_id);
+		int theID = db.resetGame(game_id);
 	}
 	
 	public ChessPiece convertPiece(Piece currentPiece) {

@@ -51,7 +51,7 @@ public class ChessPieceTest {
 		assertEquals(false, queen.getHasMoved());
 	}
 	
-	@Test
+	/*@Test
 	public void testBishopMovement() {
 		
 		//test target location on path
@@ -122,5 +122,5 @@ public class ChessPieceTest {
 		assertEquals(true, pawn.validateMove(2, 4));
 		
 		pawn.setHasMoved(false);
-	}
+	}*/
 }

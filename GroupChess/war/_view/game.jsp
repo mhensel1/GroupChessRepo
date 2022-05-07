@@ -116,6 +116,12 @@
                 background-color: whitesmoke;
 				border: 5px solid #111;
 		}
+		.errorM{
+				color: white;
+				text-align: center;
+				font-size: 28px;
+				
+		}
 
         #blackQueen {
               width: 60px;
@@ -185,6 +191,13 @@
     <body>
             <div class ="player">
 			Game ${game.id}
+		</div>
+		
+		<div class = "errorM">
+			${error}
+		</div>
+		<div class = "turn">
+			Turn ${turns}
 		</div>
         
         <div class="pieces" >
@@ -4166,7 +4179,7 @@
       	
       	<form action="${pageContext.servletContext.contextPath}/Game" method="get">
             <input name="endTurn" type="Submit" value="End Turn">
-        </form><!-- unnecessary? -->
+        </form>
             
         <form action="${pageContext.servletContext.contextPath}/Game" method="get">
             <input name="saveGame" type="Submit" value="Save Game">
@@ -4178,7 +4191,11 @@
             
         <form action="${pageContext.servletContext.contextPath}/Menu" method="get">
             <input name="exitGame" type="Submit" value="Exit Game">
-        </form>  
+        </form> 
+        
+         <form action="${pageContext.servletContext.contextPath}/Game" method="post">
+            <input name="forfeit" type="Submit" value="Forfeit">
+        </form> 
             
         <form action="http://www.uschess.org/index.php/Learn-About-Chess/Learn-to-Play-Chess.html">
             <input type="submit" value="Learn to Play" />

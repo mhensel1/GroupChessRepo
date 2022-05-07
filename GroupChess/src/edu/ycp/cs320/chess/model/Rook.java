@@ -22,16 +22,16 @@ public class Rook extends ChessPiece {
 		}
     	if(deltaY == 0 && oldX - x < 0) {
     		//check collision here
-    		for (int i = 0; i != deltaY ;i++) {
-				List<Piece> pieceList = super.getDb().findPieceByXY(x, y-i, gameId);
+    		for (int i = 0; i != deltaX ;i++) {
+				List<Piece> pieceList = super.getDb().findPieceByXY(x-i, y, gameId);
 				if(!pieceList.isEmpty()) {
 					return false;
 				}
 			}
     		return true;
     	}else if(deltaY == 0 && oldX - x > 0) {
-    		for (int i = 0; i != deltaY ;i++) {
-				List<Piece> pieceList = super.getDb().findPieceByXY(x, y+i, gameId);
+    		for (int i = 0; i != deltaX ;i++) {
+				List<Piece> pieceList = super.getDb().findPieceByXY(x+i, y, gameId);
 				if(!pieceList.isEmpty()) {
 					return false;
 				}
@@ -39,7 +39,7 @@ public class Rook extends ChessPiece {
     		return true;
     	}else if(deltaX == 0 && oldY - y < 0) {
     		for (int i = 0; i != deltaY ;i++) {
-				List<Piece> pieceList = super.getDb().findPieceByXY(x-i, y, gameId);
+				List<Piece> pieceList = super.getDb().findPieceByXY(x, y-i, gameId);
 				if(!pieceList.isEmpty()) {
 					return false;
 				}
@@ -47,7 +47,7 @@ public class Rook extends ChessPiece {
     		return true;
     	}else if(deltaX == 0 && oldY - y > 0) {
     		for (int i = 0; i != deltaY ;i++) {
-				List<Piece> pieceList = super.getDb().findPieceByXY(x+i, y, gameId);
+				List<Piece> pieceList = super.getDb().findPieceByXY(x, y+i, gameId);
 				if(!pieceList.isEmpty()) {
 					return false;
 				}
