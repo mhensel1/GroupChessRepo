@@ -97,6 +97,7 @@ public class GameServlet extends HttpServlet {
 		if (req.getParameter("createGame") != null) {
 		//controller.startGame();
 		}
+		
 		System.out.println("Has selected a piece " + session.getAttribute("hasSelected"));
 		String yn = (String) session.getAttribute("hasSelected");
 		System.out.println("yn =  " + yn);
@@ -389,7 +390,6 @@ public class GameServlet extends HttpServlet {
 							controller.move(oldX, oldY, x, y, false, true, game_id);
 							System.out.println("Piece moved");
 							session.setAttribute("hasSelected", "no");
-
 							String turnS = game.getTurns();
 							int turn = Integer.parseInt(turnS);
 							controller.updateTurn(game_id, turn+1);
@@ -762,19 +762,10 @@ public class GameServlet extends HttpServlet {
 		}
 		
 		System.out.println("yn at end of post: " + yn);
-		if (req.getParameter("endTurn") != null) {
-			
-		} else if (req.getParameter("saveGame") != null) {
-			
-		} else if (req.getParameter("viewHistory") != null) {
 		
-		} else if (req.getParameter("forfeit") != null) {
+		if (req.getParameter("forfeit") != null) {
 			controller.gameOver(game_id, user_id, game.getOppId(), turns-1);
 			errorMessage = "Game Over!";
-		} else if (req.getParameter("exitGame") != null) {
-			
-		} else {
-			req.getRequestDispatcher("/_view/game.jsp").forward(req, resp);
 		}
 	
 		//System.out.println(controller.getstart().g);

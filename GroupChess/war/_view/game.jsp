@@ -34,20 +34,19 @@
                 width: 510px;
                 text-align: center;
 		}
-        .chat {
+        .selected {
 				width: 260px;
-                height: 200px;
-                position:absolute;
-                margin-left: 25px;
-                top:320px;
-                left: 10px;
-                background-color: whitesmoke;
-				border: 5px solid #111;
+                height: 25px;
+                background-color: #C90000;
+				border: 3px solid #111;
+                color: white;
+                top: 75px;
+                margin-left: 575px;
+                
 		}
         .pieces {
-				background-color: #C90000;
-				 width: 260px;
-                height: 300px;
+				width: 280px;
+                height: 360px;
                 position:absolute;
                 margin-left: 25px;
                 top:10px;
@@ -117,9 +116,13 @@
 				border: 5px solid #111;
 		}
 		.errorM{
-				color: white;
-				text-align: center;
-				font-size: 28px;
+				width: 260px;
+                height: 25px;
+                background-color: #C90000;
+				border: 3px solid #111;
+                color: white;
+                top: 575px;
+                margin-left: 575px;
 				
 		}
 
@@ -151,7 +154,7 @@
         #blackPawn {
               width: 60px;
               height: 60px;
-              background: url(_view/chessPieces.png) -300px 0;
+              background: url(_view/chessPieces.png) -302px 0;
         }    
         #whiteQueen {
               width: 60px;
@@ -181,7 +184,7 @@
         #whitePawn {
               width: 60px;
               height: 60px;
-              background: url(_view/chessPieces.png) -300px -60px;
+              background: url(_view/chessPieces.png) -302px -60px;
         }
             
         </style>
@@ -189,30 +192,71 @@
 	</head>
     
     <body>
-            <div class ="player">
-			Game ${game.id}
+        <div class ="player">
+			 <c:if test = "${turns % 2 == 0}">
+                     White Player Turn           
+            </c:if> 
+            <c:if test = "${turns % 2 != 0}">
+                     Black Player Turn           
+            </c:if>
 		</div>
-		
-		<div class = "errorM">
-			${error}
-		</div>
-		<div class = "turn">
-			Turn ${turns}
+        
+        <div class = "selected">
+			Piece Selected: ${hasSelected}
 		</div>
         
         <div class="pieces" >
             <div style="height: 32px; background-color: #C90000;border: 3px solid #111;  color: black;
 				font-size: 28px;">
                 Captured Pieces
+                <div>
+                  <c:forEach var="piece" items="${pieces}">
+                    <c:if test = "${piece.captured == 'true'}">
+                        <c:if test = "${piece.color == 'true'}">
+                                <c:if test = "${piece.type == 'rook'}">
+                                <input name="0${count}" type="Submit"  value=" "img id ="whiteRook" src= "_view/transparent.png">
+                                </c:if>  
+                                <c:if test = "${piece.type == 'knight'}">
+                                <input name="0${count}" type="Submit"  value=" "img id ="whiteKnight" src= "_view/transparent.png">
+                                </c:if>     
+                                <c:if test = "${piece.type == 'bishop'}">
+                                <input name="0${count}" type="Submit"  value=" "img id ="whiteBishop" src= "_view/transparent.png">
+                                </c:if>             
+                                <c:if test = "${piece.type == 'king'}">
+                                <input name="0${count}" type="Submit"  value=" "img id ="whiteKing" src= "_view/transparent.png">
+                                </c:if> 
+                                <c:if test = "${piece.type == 'queen'}">
+                               <input name="0${count}" type="Submit"  value=" "img id ="whiteQueen" src= "_view/transparent.png">
+                                </c:if> 
+                                <c:if test = "${piece.type == 'pawn'}">
+                                <input name="0${count}" type="Submit"  value=" "img id ="whitePawn" src= "_view/transparent.png">
+                                </c:if> 
+                            </c:if>
+                            <c:if test = "${piece.color == 'false'}">
+                                <c:if test = "${piece.type == 'rook'}">
+                                <input name="0${count}" type="Submit"  value=" "img id ="blackRook" src= "_view/transparent.png">
+                                </c:if>  
+                                <c:if test = "${piece.type == 'knight'}">
+                                <input name="0${count}" type="Submit"  value=" "img id ="blackKnight" src= "_view/transparent.png">
+                                </c:if>     
+                                <c:if test = "${piece.type == 'bishop'}">
+                                <input name="0${count}" type="Submit"  value=" "img id ="blackBishop" src= "_view/transparent.png">
+                                </c:if>             
+                                <c:if test = "${piece.type == 'king'}">
+                                <input name="0${count}" type="Submit"  value=" "img id ="blackKing" src= "_view/transparent.png" >
+                                </c:if> 
+                                <c:if test = "${piece.type == 'queen'}">
+                               <input name="0${count}" type="Submit"  value=" "img id ="blackQueen" src= "_view/transparent.png" >
+                                </c:if> 
+                                <c:if test = "${piece.type == 'pawn'}">
+                                <input name="0${count}" type="Submit"  value=" "img id ="blackPawn" src= "_view/transparent.png" >
+                                </c:if> 
+                            </c:if>            
+                    </c:if> 
+                  </c:forEach> 
+                    </div>
             </div>
            
-        </div>
-        
-        <div class="text">
-         <div style="height: 32px; background-color: #C90000;border: 3px solid #111;  color: black;
-				font-size: 28px;">
-                Player Chat
-            </div>
         </div>
         
         <div class="chessboard" id="board">
@@ -4172,17 +4216,17 @@
             </div>
         </div>
         
-        
+        <c:if test = "${! empty error}">
+        <div class = "errorM">
+                      ${error}         
+		</div>
+        </c:if>
         
         
         <div class = "input">
       	
       	<form action="${pageContext.servletContext.contextPath}/Game" method="get">
             <input name="endTurn" type="Submit" value="End Turn">
-        </form>
-            
-        <form action="${pageContext.servletContext.contextPath}/Game" method="get">
-            <input name="saveGame" type="Submit" value="Save Game">
         </form>
         
         <form action="${pageContext.servletContext.contextPath}/History" method="get">

@@ -26,21 +26,21 @@ public class Bishop extends ChessPiece {
     			return false;
     		}
     		if(y - oldY < 0 && x - oldX < 0 ) {
-    			for (int i = 0; i != deltaY ;i++) {
+    			for (int i = 1; i != deltaY ;i++) {
     				List<Piece> pieceList = super.getDb().findPieceByXY(x+i, y+i, gameId);
     				if(!pieceList.isEmpty()) {
     					return false;
     				}
     			}
     		}else if(y - oldY < 0 && x - oldX > 0) {
-    			for (int i = 0; i != deltaY ;i++) {
+    			for (int i = 1; i != deltaY ;i++) {
     				List<Piece> pieceList = super.getDb().findPieceByXY(x-i, y+i, gameId);
     				if(!pieceList.isEmpty()) {
     					return false;
     				}
     			}
     		}else if(y - oldY > 0 && x - oldX < 0) {
-    			for (int i = 0; i != deltaY ;i++) {
+    			for (int i = 1; i != deltaY ;i++) {
     				List<Piece> pieceList = super.getDb().findPieceByXY(x+i, y-i, gameId);
     				if(!pieceList.isEmpty()) {
     					return false;
@@ -48,7 +48,7 @@ public class Bishop extends ChessPiece {
     			}
     			return true;
     		}else if(y - oldY > 0 && x - oldX > 0) {
-    			for (int i = 0; i != deltaY ;i++) {
+    			for (int i = 1; i != deltaY ;i++) {
     				List<Piece> pieceList = super.getDb().findPieceByXY(x-i, y-i, gameId);
     				if(!pieceList.isEmpty()) {
     					return false;
